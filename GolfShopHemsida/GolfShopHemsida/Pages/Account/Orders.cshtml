@@ -1,0 +1,33 @@
+﻿@page
+@model GolfShopHemsida.Pages.Account.OrdersModel
+@{
+    ViewData["Title"] = "Order History";
+}
+
+<h2>Your Order History</h2>
+
+@if (Model.Orders.Any())
+{
+    foreach (var order in Model.Orders)
+    {
+        <div class="order-card">
+            <h4>Order #@order.OrderId - @order.OrderDate.ToString("g")</h4>
+            <p>Total: @order.TotalAmount.ToString("C")</p>
+
+            <table class="table">
+                @foreach (var item in order.OrderItems)
+                {
+                    <tr>
+                        <td>@item.Item.Name</td>
+                        <td>@item.Quantity x @item.UnitPrice.ToString("C")</td>
+                        <td>@((item.Quantity * item.UnitPrice).ToString("C"))</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+}
+else
+{
+    <p>You haven't placed any orders yet.</p>
+}

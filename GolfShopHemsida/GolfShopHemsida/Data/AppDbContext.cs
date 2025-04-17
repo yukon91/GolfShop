@@ -10,10 +10,16 @@ public class AppDbContext : IdentityDbContext<GolfShopUser>
     {
     }
 
-    public DbSet<Post> Posts { get; set; }
-    public DbSet<Comment> Comments { get; set; }
+    public DbSet<Post> Posts { get; set; } = null!;
+    public DbSet<Comment> Comments { get; set; } = null!;
+    public DbSet<FollowUser> FollowUsers { get; set; } = null!;
+    public DbSet<UserActivities> UserActivities { get; set; } = null!;
+    public DbSet<Item> Items { get; set; } = null!;
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; } = null!;
+    public DbSet<CartItem> CartItems { get; set; } = null!;
+    public DbSet<Order> Orders { get; set; } = null!;
+    public DbSet<OrderItem> OrderItems { get; set; } = null!;
 
-    public DbSet<Purchase> Purchases { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,5 +40,20 @@ public class AppDbContext : IdentityDbContext<GolfShopUser>
         modelBuilder.Entity<Post>()
             .Property(p => p.PostId)
             .HasMaxLength(450);
+
+        modelBuilder.Entity<FollowUser>()
+            .HasKey(f => new { f.FollowerId, f.FollowedId }); 
+
+        modelBuilder.Entity<FollowUser>()
+            .HasOne(f => f.Follower)
+            .WithMany()
+            .HasForeignKey(f => f.FollowerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<FollowUser>()
+            .HasOne(f => f.Followed)
+            .WithMany()
+            .HasForeignKey(f => f.FollowedId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

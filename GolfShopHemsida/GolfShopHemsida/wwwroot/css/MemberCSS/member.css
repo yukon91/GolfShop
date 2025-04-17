@@ -130,17 +130,40 @@ button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem;
     margin-top: 1.5rem;
     border-radius: 5px;
     font-weight: 600;
     align-self: center;
+    display: block;
+    width: 100%; 
 }
 
-    .save-button:hover {
-        background-color: #3e8e41;
-        transform: scale(1.03);
-    }
+.order-link {
+    display: block;
+    background-color: darkslateblue;
+    color: white;
+    border: none;
+    margin-top: 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 0.7rem;
+    transition: transform 0.6s ease;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.save-button:hover {
+    background-color: #3e8e41;
+    transform: scale(1.03);
+}
+
+.order-link:hover {
+    transform: scale(1.03);
+    background-color: blue;
+    transform-origin: center;
+}
 
 .cancel-button {
     background-color: #ff4c4c;
@@ -204,6 +227,69 @@ button {
         transform: scale(1.05);
     }
 
+.user-container {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1.5rem;
+    margin: 1rem auto 2rem auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    margin: 0.5rem 0;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+ .user-info:hover {
+     background-color: #ebebeb;
+     transform: translateY(-2px);
+ }
+
+ .user-info p {
+     margin: 0;
+     font-weight: 500;
+     color: #333;
+ }
+
+.follow-button, .unfollow-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.follow-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ .follow-button:hover {
+     background-color: #3e8e41;
+     transform: scale(1.05);
+ }
+
+.unfollow-button {
+    background-color: #f44336;
+    color: white;
+}
+
+ .unfollow-button:hover {
+     background-color: #d32f2f;
+     transform: scale(1.05);
+ }
+
 #logout {
     background-color: #ff9800;
     color: white;
@@ -217,10 +303,30 @@ button {
     text-align: center;
 }
 
-    #logout:hover {
-        background-color: #e68a00;
-        transform: scale(1.03);
-    }
+ #logout:hover {
+     background-color: #e68a00;
+     transform: scale(1.03);
+ }
+
+.order-history-wrapper {
+    background-color: rgba(77, 77, 77, 0.95);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 3rem;
+}
+
+ .order-history-wrapper h2 {
+     font-weight: 700;
+     font-size: 2rem;
+     color: #ffffff;
+     margin-bottom: 2rem;
+     text-align: center;
+ }
+
+ footer{
+     color:white;
+ }
 
 @media (max-width: 768px) {
     .container1 {

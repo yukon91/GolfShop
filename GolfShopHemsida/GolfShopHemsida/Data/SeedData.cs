@@ -1,5 +1,6 @@
 ﻿using GolfShopHemsida.Models;
 using Microsoft.AspNetCore.Identity;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GolfShopHemsida.Data
 {
@@ -44,3 +45,4 @@ namespace GolfShopHemsida.Data
         }
     }
 }
+

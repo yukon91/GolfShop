@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GolfShopHemsida.Models;
 using GolfShopHemsida.Data;
+using GolfShopHemsida.Repositories;
+using GolfShopHemsida.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,11 @@ builder.Services.AddIdentity<GolfShopUser, IdentityRole>()
 
 builder.Services.AddTransient<Microsoft.AspNetCore.Identity.UI.Services.IEmailSender, DummyEmailSender>();
 
+builder.Services.AddScoped<ItemRepository>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ShoppingCartService>();
+
 
 var app = builder.Build();
 
@@ -24,7 +31,11 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<GolfShopUser>>();
-    SeedData.Initialize(services, userManager).Wait();
+    await SeedData.Initialize(services, userManager);
+
+    // Seed product data
+    var context = services.GetRequiredService<AppDbContext>();
+    DbInitializer.Initialize(context);
 }
 
 // Configure the HTTP request pipeline.

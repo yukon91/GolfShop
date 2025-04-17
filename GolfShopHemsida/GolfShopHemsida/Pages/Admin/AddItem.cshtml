@@ -1,0 +1,35 @@
+﻿@page
+@model GolfShopHemsida.Pages.Admin.AddItemModel
+
+<h2>Redigera produkt</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="AddItem.Name">Namn</label>
+        <input asp-for="AddItem.Name" class="form-control" />
+        <span asp-validation-for="AddItem.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AddItem.Description">Beskrivning</label>
+        <input asp-for="AddItem.Description" class="form-control" />
+        <span asp-validation-for="AddItem.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AddItem.Price">Pris</label>
+        <input asp-for="AddItem.Price" class="form-control" />
+        <span asp-validation-for="AddItem.Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AddItem.Stock">Lager</label>
+        <input asp-for="AddItem.Stock" class="form-control" />
+        <span asp-validation-for="AddItem.Stock" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Image">Bild</label>
+        <input type="file" id="Image" name="Image" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin:10px;">Spara</button>
+    <a asp-page="/Admin/ProductManagement" class="btn btn-secondary">Avbryt</a>
+</form>

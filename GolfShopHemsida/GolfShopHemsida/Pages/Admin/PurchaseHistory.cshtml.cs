@@ -19,7 +19,7 @@ namespace GolfShopHemsida.Pages.Admin
             _context = context;
         }
 
-        public IList<Purchase> Purchases { get; set; }
+        public IList<Order> Orders { get; set; }
 
 
 
@@ -27,7 +27,7 @@ namespace GolfShopHemsida.Pages.Admin
         {
             if (string.IsNullOrEmpty(id)) return NotFound();
 
-            Purchases = await _context.Purchases
+            Orders = await _context.Orders
                 .Include(p => p.User)
                 .Where(p => p.GolfShopUserId == id)
                 .ToListAsync();

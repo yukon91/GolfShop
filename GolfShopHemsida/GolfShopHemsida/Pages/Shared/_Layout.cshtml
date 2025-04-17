@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GolfShopHemsida</title>
     <script type="importmap"></script>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <header id="header">
-    <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-    <ul class="navbar">
-      <li><a asp-page="/Index">Home</a></li>
+        <a asp-page="/Index" class="logo">West Coast Shop</a>
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul class="navbar">
+            <li><a asp-page="/Index">Home</a></li>
             @if (User.Identity.IsAuthenticated)
             {
                 <li><a asp-page="/Account/Member">Medlemssektion</a></li>
@@ -26,21 +30,25 @@
             else
             {
                 <li><a asp-area="Identity" asp-page="/Account/Login">Medlemssektion</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Cart/Index">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Account/Orders">My Orders</a>
+                </li>
             }
             @if (User.IsInRole("Admin"))
             {
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-page="/Admin/AdminUser">Kundregister</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Admin/ProductManagement">Produkthantering</a>
+                </li>
             }
-      <li><a href="../Boka/Boka.html">Boka</a></li>
-      <li><a href="../Om-oss/Om-oss.html">Om&nbsp;oss</a></li>
-    </ul>
-    <div class="follow-oss">
-        <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
-        <a asp-page="/Shop"><i class='bx bx-shopping-bag'></i></a>
-        <a href="#"><i class='bx bxl-instagram'></i></a>
-        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+        </ul>
+        <div class="follow-oss">
+            <a asp-page="/Shop"><i class='bx bx-shopping-bag'></i></a>
             @if (User.Identity.IsAuthenticated)
             {
                 <a asp-page="/Account/Member"><i class='bx bxs-user'></i></a>
@@ -49,7 +57,7 @@
             {
                 <a asp-area="Identity" asp-page="/Account/Login"><i class='bx bxs-user'></i></a>
             }
-    </div>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -57,8 +65,8 @@
         </main>
     </div>
 
-    <footer class="footer">      
-            &copy; 2025 - GolfShopHemsida -       
+    <footer class="footer">
+        &copy; 2025 - GolfShopHemsida -
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

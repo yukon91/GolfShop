@@ -118,15 +118,15 @@ namespace GolfShopHemsida.Areas.Identity.Pages.Account
 
                     var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
 
-                    //Checking if the user is an Admin
-                    if (await _signInManager.UserManager.IsInRoleAsync(user, "Admin"))
+                    if (user != null && await _signInManager.UserManager.IsInRoleAsync(user, "Admin"))
                     {
-                        return RedirectToPage("/Admin/AdminUser"); 
+                        return RedirectToPage("/Admin/AdminUser");
                     }
                     else
                     {
-                        return RedirectToPage("/Account/Member"); 
+                        return RedirectToPage("/Account/Member");
                     }
+
                 }
                 if (result.RequiresTwoFactor)
                 {

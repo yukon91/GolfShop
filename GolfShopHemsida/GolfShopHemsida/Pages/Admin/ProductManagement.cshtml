@@ -1,0 +1,35 @@
+﻿@page
+@model GolfShopHemsida.Pages.Admin.ProductManagementModel
+
+<h2>Produkthantering</h2>
+<a asp-page="/Admin/AddItem" class="btn btn-primary save-button add-item-button">Lägg till Produkt</a>
+
+<table class="table Product-Management-Body">
+    <thead>
+        <tr>
+            <th>Namn</th>
+            <th>Pris</th>
+            <th>Lager</th>
+            <th>Redigera</th>
+            <th>Ta bort</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Stock</td>
+                <td>
+                    <a asp-page="/Admin/EditItem" asp-route-itemId="@item.ItemId" class="btn btn-warning">Ändra</a>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-itemId="@item.ItemId">
+                        <button type="submit" class="btn btn-danger">Ta bort</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

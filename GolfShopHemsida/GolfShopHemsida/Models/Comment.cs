@@ -17,6 +17,8 @@ namespace GolfShopHemsida.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public string GolfShopUserId { get; set; }
+
+        [ForeignKey(nameof(GolfShopUserId))]
         public GolfShopUser User { get; set; }
 
         public string PostId { get; set; } 

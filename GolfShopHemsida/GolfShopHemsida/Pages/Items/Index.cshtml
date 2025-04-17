@@ -1,0 +1,33 @@
+﻿@page
+@model GolfShopHemsida.Pages.Items.IndexModel
+
+<h2>Items</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Stock</td>
+                <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ItemId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@item.ItemId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="Create" class="btn btn-primary">Add New Item</a>

@@ -1,0 +1,39 @@
+﻿@page "{itemId}"
+@model GolfShopHemsida.Pages.Admin.EditItemModel
+
+<h2>Redigera produkten</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="ItemToEdit.ItemId" />
+
+    <div class="form-group">
+        <label asp-for="ItemToEdit.Name">Namn</label>
+        <input asp-for="ItemToEdit.Name" class="form-control" />
+        <span asp-validation-for="ItemToEdit.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ItemToEdit.Description">Beskrivning</label>
+        <input asp-for="ItemToEdit.Description" class="form-control" />
+        <span asp-validation-for="ItemToEdit.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ItemToEdit.Price">Pris</label>
+        <input asp-for="ItemToEdit.Price" class="form-control" />
+        <span asp-validation-for="ItemToEdit.Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ItemToEdit.Stock">Lager</label>
+        <input asp-for="ItemToEdit.Stock" class="form-control" />
+        <span asp-validation-for="ItemToEdit.Stock" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Bild</label>
+        <input type="file" id="Image" name="Image" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin:10px;">Spara</button>
+    <a asp-page="/Admin/ProductManagement" class="btn btn-secondary">Avbryt</a>
+</form>
