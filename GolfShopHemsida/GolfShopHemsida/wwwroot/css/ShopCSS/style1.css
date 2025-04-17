@@ -11,6 +11,7 @@
 /* Shop Content */
 .shop-content {
     grid-column: 1;
+    margin-top: -31px
 }
 
 .shop-header {

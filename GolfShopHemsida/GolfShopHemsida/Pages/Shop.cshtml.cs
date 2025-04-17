@@ -20,15 +20,15 @@ namespace GolfShopHemsida.Pages
 
         public List<Item> Items { get; set; }
         public List<CartItem> CartItems { get; set; }
-        public int CartItemCount => CartItems.Sum(item => item.Quantity); // Calculates total items in the cart
-        public decimal CartTotal => CartItems.Sum(item => item.Quantity * item.Item.Price); // Calculates total price of the cart
+        public int CartItemCount => CartItems.Sum(item => item.Quantity); 
+        public decimal CartTotal => CartItems.Sum(item => item.Quantity * item.Item.Price); 
 
         public async Task OnGetAsync()
         {
             // Fetch items from the database
             Items = await _cartService.GetAvailableItemsAsync();
 
-            // Fetch the user's cart
+            // Fetch the uses cart
             var cart = await _cartService.GetUserCart();
             CartItems = cart.CartItems;
         }
