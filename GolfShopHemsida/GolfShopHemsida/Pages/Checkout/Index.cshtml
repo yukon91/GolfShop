@@ -13,6 +13,28 @@
                     {
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             @item.Item.Name
+                    <form method="post" asp-page-handler="RemoveFromCart">
+                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                        <button type="submit" class="remove-btn"><i class='bx bx-trash'></i></button>
+                    </form>
+                            <span>@item.Quantity x @item.Item.Price.ToString("0") kr</span>
+                        </li>
+
+                    }
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Total</strong>
+                        <strong>@Model.Cart.CartItems.Sum(i => i.Item.Price * i.Quantity).ToString("0") kr</strong>
+                    </li>
+                </ul>
+        <form method="post" asp-page-handler="PlaceOrder">
+            <div class="order-summary">
+                <h1>Checkout</h1>
+                <h3>Orderöversikt</h3>
+                <ul class="list-group">
+                    @foreach (var item in Model.Cart.CartItems)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @item.Item.Name
                             <span>@item.Quantity x @item.Item.Price.ToString("0") kr</span>
                         </li>
                     }
@@ -21,7 +43,10 @@
                         <strong>@Model.Cart.CartItems.Sum(i => i.Item.Price * i.Quantity).ToString("0") kr</strong>
                     </li>
                 </ul>
-                <button type="submit" class="btn btn-primary btn-block" asp-page-handler="PlaceOrder">Complete Order</button>
+                <button type="submit" class="btn btn-primary btn-block">Complete Order</button>
+            </div>
+        </form>
+
             </div>
         </div>
 

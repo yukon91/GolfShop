@@ -29,7 +29,7 @@ namespace GolfShopHemsida.Pages.Admin
 
             Orders = await _context.Orders
                 .Include(p => p.User)
-                .Where(p => p.GolfShopUserId == id)
+                .Where(p => p.UserId == id) // Fixed: Changed 'GolfShopUser' to 'UserId'  
                 .ToListAsync();
 
             return Page();

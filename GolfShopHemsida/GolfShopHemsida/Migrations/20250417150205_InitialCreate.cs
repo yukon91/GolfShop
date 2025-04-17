@@ -191,14 +191,12 @@ namespace GolfShopHemsida.Migrations
                         name: "FK_FollowUsers_AspNetUsers_FollowedId",
                         column: x => x.FollowedId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FollowUsers_AspNetUsers_FollowerId",
                         column: x => x.FollowerId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -232,7 +230,8 @@ namespace GolfShopHemsida.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GolfShopUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    GolfShopUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    GolfShopUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -243,6 +242,11 @@ namespace GolfShopHemsida.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Posts_AspNetUsers_GolfShopUserId1",
+                        column: x => x.GolfShopUserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -472,6 +476,11 @@ namespace GolfShopHemsida.Migrations
                 name: "IX_Posts_GolfShopUserId",
                 table: "Posts",
                 column: "GolfShopUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_GolfShopUserId1",
+                table: "Posts",
+                column: "GolfShopUserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCarts_UserId",

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GolfShopHemsida.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417130936_FixedUserPostRelationshoip")]
-    partial class FixedUserPostRelationshoip
+    [Migration("20250417150205_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -538,13 +538,13 @@ namespace GolfShopHemsida.Migrations
                     b.HasOne("GolfShopHemsida.Models.GolfShopUser", "Followed")
                         .WithMany()
                         .HasForeignKey("FollowedId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("GolfShopHemsida.Models.GolfShopUser", "Follower")
                         .WithMany()
                         .HasForeignKey("FollowerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Followed");

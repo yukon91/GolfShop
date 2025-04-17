@@ -1,0 +1,19 @@
+﻿@page
+@model OrderConfirmationModel
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<h2>Order Confirmation</h2>
+<p>Thank you for your order! Your order number is: <strong>@Model.Order.OrderId</strong></p>
+<p>Total: <strong>@Model.Order.TotalAmount.ToString("0") kr</strong></p>
+
+<h4>Items:</h4>
+<ul>
+    @foreach (var item in Model.Order.OrderItems)
+    {
+        <li>@item.Item.Name - @item.Quantity st</li>
+    }
+</ul>
+
+<a asp-page="/Account/OrderHistory" class="btn btn-primary">View Order History</a>

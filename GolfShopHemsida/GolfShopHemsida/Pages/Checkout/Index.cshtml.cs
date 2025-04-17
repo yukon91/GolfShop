@@ -34,6 +34,17 @@ namespace GolfShopHemsida.Pages.Checkout
             return Page();
         }
 
+        public async Task<IActionResult> OnPostRemoveFromCartAsync(string cartItemId)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login");
+            }
+
+            await _cartService.RemoveFromCart(cartItemId);
+            return RedirectToPage(); // Refreshes the current checkout page
+        }
+
         public async Task<IActionResult> OnPostPlaceOrderAsync()
         {
             if (!User.Identity.IsAuthenticated)
@@ -41,6 +52,7 @@ namespace GolfShopHemsida.Pages.Checkout
                 return RedirectToPage("/Account/Login");
             }
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var cart = await _cartService.GetUserCart();
 
             if (cart == null || !cart.CartItems.Any())
@@ -48,10 +60,10 @@ namespace GolfShopHemsida.Pages.Checkout
                 return RedirectToPage("/Cart/Index");
             }
 
-            // Create a new order  
+            // Create a new order
             var order = new Order
             {
-                UserId = cart.UserId,
+                UserId = userId,
                 OrderDate = DateTime.UtcNow,
                 TotalAmount = cart.CartItems.Sum(item => item.Item.Price * item.Quantity),
                 Status = "Pending",
@@ -59,20 +71,21 @@ namespace GolfShopHemsida.Pages.Checkout
                 {
                     ItemId = item.ItemId,
                     Quantity = item.Quantity,
+                    UnitPrice = item.Item.Price // Important for order history display
                 }).ToList()
             };
 
-            // Save the order to the database  
             using (var scope = HttpContext.RequestServices.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 dbContext.Orders.Add(order);
-                dbContext.CartItems.RemoveRange(cart.CartItems); // Clear the cart  
+                dbContext.CartItems.RemoveRange(cart.CartItems); // Clear cart
                 await dbContext.SaveChangesAsync();
             }
 
-            // Redirect to confirmation page  
-            return RedirectToPage("/Checkout/Confirmation", new { orderId = order.OrderId });
+            return RedirectToPage("/Checkout/OrderConfirmation", new { orderId = order.OrderId });
         }
+
+
     }
 }

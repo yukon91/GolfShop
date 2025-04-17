@@ -104,7 +104,7 @@ namespace GolfShopHemsida.Services
                 throw new InvalidOperationException("Cannot checkout an empty cart");
             }
 
-            // Verify all items still exist and have stock
+            // Verify all items still exist and have stock  
             foreach (var cartItem in cart.CartItems)
             {
                 var item = await _context.Items.FindAsync(cartItem.ItemId);
@@ -113,13 +113,13 @@ namespace GolfShopHemsida.Services
                     throw new InvalidOperationException($"Product {cartItem.ItemId} is no longer available or out of stock");
                 }
 
-                // Deduct stock
+                // Deduct stock  
                 item.Stock -= cartItem.Quantity;
             }
 
             var order = new Order
             {
-                OrderId = Guid.NewGuid().ToString(),
+                OrderId = 0, // Fix: Set to 0 for auto-incremented primary key  
                 UserId = cart.UserId,
                 OrderDate = DateTime.UtcNow,
                 TotalAmount = cart.CartItems.Sum(i => i.Item.Price * i.Quantity),
@@ -153,7 +153,6 @@ namespace GolfShopHemsida.Services
                 await transaction.RollbackAsync();
                 throw;
             }
-
         }
         public async Task<List<Item>> GetAvailableItemsAsync()
         {
