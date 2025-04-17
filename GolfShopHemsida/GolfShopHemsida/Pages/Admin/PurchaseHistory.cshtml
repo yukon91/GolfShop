@@ -8,10 +8,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Item</th>
-                <th>Price</th>
+                <th>Dag</th>
+                <th>Kund</th>
+                <th>Pris</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +19,6 @@
                 <tr>
                     <td>@order.OrderDate.ToShortDateString()</td>
                     <td>@order.User?.Namn</td>
-                    
                     <td>@order.TotalAmount.ToString("C")</td>
                 </tr>
             }
