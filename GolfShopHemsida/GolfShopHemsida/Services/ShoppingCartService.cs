@@ -20,19 +20,52 @@ namespace GolfShopHemsida.Services
             return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
-        public async Task<ShoppingCart> GetUserCart()
+        public async Task<ShoppingCart> GetUserCart(string? userId)
+        {
+            var currentUserId = GetCurrentUserId();
+            if (string.IsNullOrEmpty(currentUserId))
+            {
+                throw new InvalidOperationException("User must be logged in to access cart");
+            }
+
+            // Verify user exists
+            var userExists = await _context.Users.AnyAsync(u => u.Id == currentUserId);
+            if (!userExists)
+            {
+                throw new InvalidOperationException("User account not found");
+            }
+
+            var cart = await _context.ShoppingCarts
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Item)
+                .FirstOrDefaultAsync(c => c.UserId == currentUserId);
+
+            if (cart == null)
+            {
+                cart = new ShoppingCart
+                {
+                    UserId = currentUserId,
+                    CartItems = new List<CartItem>()
+                };
+                _context.ShoppingCarts.Add(cart);
+                await _context.SaveChangesAsync();
+            }
+
+            return cart;
+        }
+
+        public async Task AddToCart(string itemId, int quantity = 1)
         {
             var userId = GetCurrentUserId();
             if (string.IsNullOrEmpty(userId))
             {
-                throw new InvalidOperationException("User must be logged in to access cart");
+                throw new UnauthorizedAccessException("User must be logged in");
             }
-            
-            // Verify user exists
-            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-            if (!userExists)
+
+            var item = await _context.Items.FindAsync(itemId);
+            if (item == null)
             {
-                throw new InvalidOperationException("User account not found");
+                throw new InvalidOperationException("Product not found");
             }
 
             var cart = await _context.ShoppingCarts
@@ -48,58 +81,16 @@ namespace GolfShopHemsida.Services
                     CartItems = new List<CartItem>()
                 };
                 _context.ShoppingCarts.Add(cart);
-                await _context.SaveChangesAsync();
             }
 
-            return cart;
-        }
-
-        public async Task AddToCart(string itemId, int quantity = 1)
-        {
-            if (string.IsNullOrEmpty(itemId))
-            {
-                throw new ArgumentException("Item ID cannot be empty", nameof(itemId));
-            }
-
-            if (quantity <= 0)
-            {
-                throw new ArgumentException("Quantity must be positive", nameof(quantity));
-            }
-
-            // Verify item exists and is in stock
-            var item = await _context.Items.FirstOrDefaultAsync(i => i.ItemId == itemId);
-            if (item == null)
-            {
-                throw new InvalidOperationException($"Product with ID {itemId} not found");
-            }
-
-            if (item.Stock <= 0)
-            {
-                throw new InvalidOperationException($"Product {item.Name} is out of stock");
-            }
-
-            var cart = await GetUserCart();
             var existingItem = cart.CartItems.FirstOrDefault(i => i.ItemId == itemId);
 
             if (existingItem != null)
             {
-                // Check if adding more exceeds stock
-                if (existingItem.Quantity + quantity > item.Stock)
-                {
-                    throw new InvalidOperationException(
-                        $"Cannot add {quantity} more of {item.Name}. Only {item.Stock - existingItem.Quantity} available");
-                }
-
                 existingItem.Quantity += quantity;
             }
             else
             {
-                if (quantity > item.Stock)
-                {
-                    throw new InvalidOperationException(
-                        $"Cannot add {quantity} of {item.Name}. Only {item.Stock} available");
-                }
-
                 cart.CartItems.Add(new CartItem
                 {
                     ItemId = itemId,
@@ -127,7 +118,13 @@ namespace GolfShopHemsida.Services
 
         public async Task<Order> Checkout()
         {
-            var cart = await GetUserCart();
+            var userId = GetCurrentUserId();
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new InvalidOperationException("User must be logged in to checkout");
+            }
+
+            var cart = await GetUserCart(userId);
 
             if (!cart.CartItems.Any())
             {

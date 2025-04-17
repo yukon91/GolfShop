@@ -16,10 +16,7 @@ namespace GolfShopHemsida.Pages.Cart
             _cartService = cartService;
         }
 
-        public async Task OnGetAsync()
-        {
-            Cart = await _cartService.GetUserCart();
-        }
+
 
         public async Task<IActionResult> OnPostRemoveFromCart(string cartItemId)
         {

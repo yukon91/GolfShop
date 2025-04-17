@@ -41,24 +41,60 @@ namespace GolfShopHemsida.Pages
             }).ToList();
         }
 
-        public async Task<IActionResult> OnPostAddToCartAsync(string itemId)
+
+
+        public async Task<JsonResult> OnPostAddToCartAsync(string itemId)
         {
             try
             {
+                if (User?.Identity?.IsAuthenticated != true)
+                {
+                    return new JsonResult(new
+                    {
+                        success = false,
+                        message = "Du måste logga in först"
+                    });
+                }
+
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return new JsonResult(new
+                    {
+                        success = false,
+                        message = "Kunde inte identifiera användaren"
+                    });
+                }
+
                 await _cartService.AddToCart(itemId);
-                SuccessMessage = "Item successfully added to your cart!";
+
+                // Return updated cart data  
+                var cart = await _cartService.GetUserCart(userId);
+                return new JsonResult(new
+                {
+                    success = true,
+                    count = cart.CartItems.Sum(i => i.Quantity),
+                    total = cart.CartItems.Sum(i => i.Quantity * i.Item.Price)
+                });
             }
             catch (InvalidOperationException ex)
             {
-                ErrorMessage = ex.Message;
+                return new JsonResult(new
+                {
+                    success = false,
+                    message = ex.Message
+                });
             }
             catch (Exception ex)
             {
-                ErrorMessage = "An error occurred while adding item to cart: " + ex.Message;
+                return new JsonResult(new
+                {
+                    success = false,
+                    message = $"Ett fel uppstod: {ex.Message}"
+                });
             }
-
-            return RedirectToPage("/Shop/Index");
         }
+
 
         // Cart-related properties (optional - can be removed if using ShoppingCartService directly)
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();

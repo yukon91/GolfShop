@@ -1,5 +1,6 @@
 ﻿@page
 @model GolfShopHemsida.Pages.ShopModel
+@Html.AntiForgeryToken()
 @{
     ViewData["Title"] = "Shop";
 }
@@ -35,6 +36,10 @@
                                 <input type="hidden" name="itemId" value="@item.ItemId" />
                                 <button type="submit" class="btn btn-primary">Lägg i kundvagn</button>
                             </form>
+                            <form method="post" asp-page-handler="RemoveFromCart" class="remove-item-form">
+                                <input type="hidden" name="cartItemId" value="@item.ItemId" />
+                                <button type="submit" class="remove-btn"><i class='bx bx-trash'></i></button>
+                            </form>
                         }
                         else
                         {
@@ -45,53 +50,117 @@
             </section>
         </div>
 
-        <!-- Cart Sidebar -->
-        <aside class="cart-sidebar">
-            <div class="cart-header">
-                <h3><i class='bx bx-cart'></i> Din Kundvagn</h3>
-                <span class="cart-count">@Model.CartItemCount</span>
-            </div>
-            <div class="cart-items show">
-                @if (Model.CartItems.Any())
-                {
-                    @foreach (var item in Model.CartItems)
+
+ 
+            <div class="cart-sidebar">
+                <div class="cart-header">
+                    <h3><i class='bx bx-cart'></i> Din Kundvagn</h3>
+                    <span class="cart-count">@Model.CartItemCount</span>
+                </div>
+                <div class="cart-items show">
+                    @if (Model.CartItems != null && Model.CartItems.Any())
                     {
-                        <div class="cart-item">
-                            <img src="@item.Item.ImageUrl" alt="@item.Item.Name">
-                            <div class="cart-item-details">
-                                <h4>@item.Item.Name</h4>
-                                <p>@item.Quantity x @item.Item.Price.ToString("0") kr</p>
-                                <form method="post" asp-page-handler="RemoveFromCart">
-                                    <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                                    <button type="submit" class="remove-btn"><i class='bx bx-trash'></i></button>
-                                </form>
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <div class="cart-item">
+                                <img src="@item.Item.ImageUrl" alt="@item.Item.Name" class="cart-item-image">
+                                <div class="cart-item-details">
+                                    <h4>@item.Item.Name</h4>
+                                    <p>@item.Quantity x @item.Item.Price.ToString("0") kr</p>
+                                    <form method="post" asp-page-handler="RemoveFromCart">
+                                        <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                                        <button type="submit" class="remove-btn"><i class='bx bx-trash'></i></button>
+                                    </form>
+                                </div>
                             </div>
+                        }
+                        <div class="cart-total">
+                            <strong>Totalt: @Model.CartTotal.ToString("0") kr</strong>
                         </div>
+                        <a asp-page="/Checkout/Index" class="checkout-btn">Till kassan</a>
                     }
-                    <div class="cart-total">
-                        <strong>Totalt: @Model.CartTotal.ToString("0") kr</strong>
-                    </div>
-                    <form method="post" asp-page="/Cart/Index" asp-page-handler="Checkout">
-                        <button type="submit" class="checkout-btn">Till kassan</button>
-                    </form>
-                }
-                else
-                {
-                    <p class="empty-cart">Din kundvagn är tom</p>
-                }
+                    else
+                    {
+                        <p class="empty-cart">Din kundvagn är tom</p>
+                    }
+                </div>
             </div>
-        </aside>
-    </div>
+
 
     <script>
-        const isLoggedIn = @(User.Identity?.IsAuthenticated.ToString().ToLower() ?? "false");
+        // Function to update cart count in header
+        function updateCartCount(count) {
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = count;
+            }
+        }
 
-        // Handle add to cart forms with AJAX
+        // Function to refresh cart via AJAX
+        async function refreshCart() {
+            try {
+                const response = await fetch('?handler=CartPartial');
+                if (!response.ok) throw new Error('Failed to refresh cart');
+
+                const cartHtml = await response.text();
+                const newCart = document.createElement('div');
+                newCart.innerHTML = cartHtml;
+
+                // Replace existing cart
+                const currentCart = document.querySelector('.cart-sidebar');
+                currentCart.replaceWith(newCart.querySelector('.cart-sidebar'));
+
+                // Reattach event listeners
+                attachCartEvents();
+                return true;
+            } catch (error) {
+                console.error('Error refreshing cart:', error);
+                return false;
+            }
+        }
+
+        // Function to attach event listeners
+        function attachCartEvents() {
+            // Toggle cart items visibility
+            document.querySelector('.cart-header')?.addEventListener('click', function() {
+                document.querySelector('.cart-items').classList.toggle('show');
+            });
+
+            // Handle remove item from cart
+            document.querySelectorAll('form[asp-page-handler="RemoveFromCart"]').forEach(form => {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+
+                    try {
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                            }
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            if (result.success) {
+                                await refreshCart();
+                                updateCartCount(result.count);
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        }
+
+        // Handle add to cart forms
         document.querySelectorAll('.add-to-cart-form').forEach(form => {
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                if (!isLoggedIn) {
+                if (!@(User.Identity?.IsAuthenticated.ToString().ToLower() ?? "false")) {
                     alert('Vänligen logga in eller skapa konto för att lägga till en produkt i kundvagnen.');
                     return;
                 }
@@ -102,64 +171,35 @@
                         method: 'POST',
                         body: formData,
                         headers: {
-                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value,
+                            'Accept': 'application/json'
                         }
                     });
 
-                    if (response.ok) {
-                        // Refresh the cart by reloading just the cart section
-                        const cartResponse = await fetch('?handler=CartPartial');
-                        const cartHtml = await cartResponse.text();
-                        document.querySelector('.cart-sidebar').outerHTML = cartHtml;
+                    const result = await response.json();
+                    if (result.success) {
+                        // Update cart count immediately
+                        updateCartCount(result.count);
 
-                        // Re-attach event listeners
-                        attachCartEvents();
+                        // Refresh the full cart display
+                        await refreshCart();
+
+                        // Show success feedback
+                        const button = this.querySelector('button');
+                        const originalText = button.textContent;
+                        button.textContent = '✓ Tillagd';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 2000);
                     } else {
-                        alert('Kunde inte lägga till produkten i kundvagnen');
+                        alert(result.message || 'Kunde inte lägga till produkten');
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    alert('Ett fel uppstod');
+                    alert('Ett fel uppstod: ' + error.message);
                 }
             });
         });
-
-        // Function to re-attach event listeners after AJAX updates
-        function attachCartEvents() {
-            // Toggle cart items visibility
-            document.querySelector('.cart-header').addEventListener('click', function() {
-                document.querySelector('.cart-items').classList.toggle('show');
-            });
-
-            // Handle remove item from cart
-            document.querySelectorAll('.remove-btn').forEach(button => {
-                button.addEventListener('click', async function(e) {
-                    e.preventDefault();
-                    const form = this.closest('form');
-                    const formData = new FormData(form);
-
-                    try {
-                        const response = await fetch(form.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                            }
-                        });
-
-                        if (response.ok) {
-                            // Refresh the cart
-                            const cartResponse = await fetch('?handler=CartPartial');
-                            const cartHtml = await cartResponse.text();
-                            document.querySelector('.cart-sidebar').outerHTML = cartHtml;
-                            attachCartEvents();
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                    }
-                });
-            });
-        }
 
         // Initial attachment of event listeners
         attachCartEvents();

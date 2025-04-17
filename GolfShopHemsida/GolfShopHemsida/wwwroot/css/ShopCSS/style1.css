@@ -81,12 +81,14 @@
 }
 
 .cart-items {
+    color: black;
     padding: 1rem;
     max-height: 500px;
     overflow-y: auto;
 }
 
 .cart-item {
+    color: black;
     display: flex;
     gap: 1rem;
     padding: 1rem 0;
