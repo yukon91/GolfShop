@@ -5,11 +5,11 @@
 }
 
 <div class="order-confirmation-container">
-    <h2>Order Confirmation</h2>
-    <p>Thank you for your order! Your order number is: <strong>@Model.Order.OrderId</strong></p>
-    <p>Total: <strong>@Model.Order.TotalAmount.ToString("0") kr</strong></p>
+    <h2>Order Bekräftelse</h2>
+    <p>Tack för din köp hos oss! Ditt ordernummer är: <strong>@Model.Order.OrderId</strong></p>
+    <p>Total kostnad: <strong>@Model.Order.TotalAmount.ToString("0") kr</strong></p>
 
-    <h4>Items:</h4>
+    <h4>Artiklar: </h4>
     <ul>
         @foreach (var item in Model.Order.OrderItems)
         {
@@ -17,7 +17,7 @@
         }
     </ul>
 
-    <a asp-page="/Account/OrderHistory" class="btn btn-primary">View Order History</a>
+    <a asp-page="/Account/OrderHistory" class="btn btn-primary">Visa beställningar</a>
 </div>
 
 <style>
