@@ -27,16 +27,45 @@
                         <h2 class="produkt-name">@item.Name</h2>
                         <p class="produkt-description">@item.Description</p>
                         <p class="produkt-price">@item.Price.ToString("0") kr</p>
+
                         @if (item.Stock > 0)
                         {
                             <form method="post" asp-page-handler="AddToCart" class="add-to-cart-form">
                                 <input type="hidden" name="itemId" value="@item.ItemId" />
-                                <button type="submit" class="btn btn-primary">Lägg i kundvagn</button>
+                                <button type="submit" class="btn btn-primary mb-4">Lägg i kundvagn</button>
                             </form>
                         }
                         else
                         {
                             <button class="out-of-stock" disabled>Slut i lager</button>
+                        }
+
+ 
+                        @if (item.Comments != null && item.Comments.Any())
+                        {
+                            <div class="comments">
+                                <h4>Kommentarer:</h4>
+                                @foreach (var comment in item.Comments.OrderByDescending(c => c.CreatedAt))
+                                {
+                                    <div class="comment">
+                                        <strong>@comment.User?.UserName</strong> <span>@comment.CreatedAt.ToString("g")</span>
+                                        <p>@comment.Content</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" asp-page="/Shop" asp-page-handler="AddComment" class="comment-form">
+                                <input type="hidden" name="ItemId" value="@item.ItemId" />
+                                <textarea name="Content" placeholder="Skriv en kommentar..." required></textarea>
+                                <button type="submit" class="btn btn-secondary">Skicka</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <p class="login-to-comment">Du måste <a href="/Identity/Account/Login">logga in</a> för att kommentera.</p>
                         }
                     </div>
                 }

@@ -23,7 +23,6 @@ namespace GolfShopHemsida.Pages.Account.Forum
         public List<Post> Threads { get; set; }
         public string CurrentUserId { get; set; }
 
-        //  Get posts & comments
         public async Task<IActionResult> OnGetAsync()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -34,7 +33,7 @@ namespace GolfShopHemsida.Pages.Account.Forum
                 .Include(p => p.Comments)
                 .ThenInclude(c => c.User)
                 .Where(p => p.Category == "Produkter")
-                .OrderByDescending(p => p.CreatedAt) 
+                .OrderByDescending(p => p.CreatedAt)
                 .ToListAsync();
 
             Notifications = await _context.UserActivities
@@ -45,7 +44,6 @@ namespace GolfShopHemsida.Pages.Account.Forum
             return Page();
         }
 
-        // Creat new post and let followers know
         public async Task<IActionResult> OnPostCreatePostAsync(string title, string content)
         {
 
@@ -74,7 +72,7 @@ namespace GolfShopHemsida.Pages.Account.Forum
                 var activity = new UserActivities
                 {
                     ReceiverId = followerId,
-                    Message = $"{currentUser.Namn} created a new post: {title}",
+                    Message = $"{currentUser.Namn} Skapade en ny tråd: {title}",
                     PostId = post.PostId,
                     CreatedAt = DateTime.Now,
                     IsRead = false
@@ -105,12 +103,14 @@ namespace GolfShopHemsida.Pages.Account.Forum
                 return Forbid();
             }
 
+            var comments = _context.Comments.Where(c => c.PostId == post.PostId);
+            _context.Comments.RemoveRange(comments);
+
             var userActivities = _context.UserActivities
                 .Where(ua => ua.PostId == post.PostId);
-
             _context.UserActivities.RemoveRange(userActivities);
-
             _context.Posts.Remove(post);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage();
@@ -157,7 +157,7 @@ namespace GolfShopHemsida.Pages.Account.Forum
                 var activity = new UserActivities
                 {
                     ReceiverId = followerId,
-                    Message = $"{user.Namn} commented on a post.",
+                    Message = $"{user.Namn} kommenterade på ett inlägg.",
                     CommentId = comment.CommentId,
                     CreatedAt = DateTime.Now,
                     IsRead = false
@@ -196,3 +196,4 @@ namespace GolfShopHemsida.Pages.Account.Forum
         }
     }
 }
+

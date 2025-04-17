@@ -14,5 +14,7 @@ namespace GolfShopHemsida.Models
         public int Stock { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string? ImageUrl { get; set; }
+
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

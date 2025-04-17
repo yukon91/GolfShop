@@ -20,7 +20,7 @@
 <body>
     <div class="container mt-4">
         <div class="order-history-wrapper">
-            <h2 class="text-center text-white mb-4">Order History</h2>
+            <h2 class="text-center text-white mb-4">Orderhistorik</h2>
 
             @if (Model.Orders?.Count > 0)
             {
@@ -29,14 +29,14 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Order #@order.OrderId</h5>
-                            <p class="card-text">Date: <strong>@order.OrderDate.ToShortDateString()</strong></p>
-                            <p class="card-text">Total Amount: <strong>@order.TotalAmount.ToString("C")</strong></p>
+                            <p class="card-text">Datum: <strong>@order.OrderDate.ToShortDateString()</strong></p>
+                            <p class="card-text">Totalt pris: <strong>@order.TotalAmount.ToString("C")</strong></p>
                             <p class="card-text">Status: <strong>@order.Status</strong></p>
-                            <p class="card-text">Items:</p>
+                            <p class="card-text">Produkt:</p>
                             <ul>
                                 @foreach (var item in order.OrderItems)
                                 {
-                                    <li>@item.Item.Name x @item.Quantity (@item.UnitPrice.ToString("C") each)</li>
+                                    <li>@item.Item.Name x @item.Quantity (@item.UnitPrice.ToString("C") styck)</li>
                                 }
                             </ul>
                         </div>
@@ -45,7 +45,7 @@
             }
             else
             {
-                <p class="text-center text-white">No orders found.</p>
+                <p class="text-center text-white">Inga ordrar hittade.</p>
             }
         </div>
     </div>

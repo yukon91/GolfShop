@@ -14,5 +14,8 @@ namespace GolfShopHemsida.Models
         public string? Betalsätt { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        [ProtectedPersonalData]
+        public override string Email { get; set; } 
+        public override string NormalizedEmail { get; set; }
     }
 }

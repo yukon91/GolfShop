@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GolfShopHemsida.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417171118_ItemAddedHistory")]
-    partial class ItemAddedHistory
+    [Migration("20250417191849_CommentModelUpdated")]
+    partial class CommentModelUpdated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,9 @@ namespace GolfShopHemsida.Migrations
                     b.Property<string>("GolfShopUserId1")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ItemId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PostId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -77,6 +80,8 @@ namespace GolfShopHemsida.Migrations
                     b.HasIndex("GolfShopUserId");
 
                     b.HasIndex("GolfShopUserId1");
+
+                    b.HasIndex("ItemId");
 
                     b.HasIndex("PostId");
 
@@ -474,9 +479,6 @@ namespace GolfShopHemsida.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("OrderItemId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -488,8 +490,6 @@ namespace GolfShopHemsida.Migrations
                     b.HasIndex("ItemId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("OrderItemId1");
 
                     b.ToTable("OrderItems");
                 });
@@ -524,6 +524,10 @@ namespace GolfShopHemsida.Migrations
                     b.HasOne("GolfShopHemsida.Models.GolfShopUser", null)
                         .WithMany("Comments")
                         .HasForeignKey("GolfShopUserId1");
+
+                    b.HasOne("GolfShopHemsida.Models.Item", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ItemId");
 
                     b.HasOne("GolfShopHemsida.Models.Post", "Post")
                         .WithMany("Comments")
@@ -680,10 +684,6 @@ namespace GolfShopHemsida.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OrderItem", null)
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderItemId1");
-
                     b.Navigation("Item");
 
                     b.Navigation("Order");
@@ -694,6 +694,11 @@ namespace GolfShopHemsida.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("GolfShopHemsida.Models.Item", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("GolfShopHemsida.Models.Order", b =>
@@ -709,11 +714,6 @@ namespace GolfShopHemsida.Migrations
             modelBuilder.Entity("GolfShopHemsida.Models.ShoppingCart", b =>
                 {
                     b.Navigation("CartItems");
-                });
-
-            modelBuilder.Entity("OrderItem", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

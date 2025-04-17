@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GolfShopHemsida.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FixedCommentsForProducts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -304,6 +304,7 @@ namespace GolfShopHemsida.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GolfShopUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PostId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ItemId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     GolfShopUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -320,6 +321,12 @@ namespace GolfShopHemsida.Migrations
                         column: x => x.GolfShopUserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Comments_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
+                        principalColumn: "ItemId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
@@ -448,6 +455,11 @@ namespace GolfShopHemsida.Migrations
                 column: "GolfShopUserId1");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_ItemId",
+                table: "Comments",
+                column: "ItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_PostId",
                 table: "Comments",
                 column: "PostId");
@@ -540,13 +552,13 @@ namespace GolfShopHemsida.Migrations
                 name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
-                name: "Items");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Items");
 
             migrationBuilder.DropTable(
                 name: "Posts");

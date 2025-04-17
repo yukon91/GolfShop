@@ -85,16 +85,16 @@ span {
 
 
  /* Stil på navigeringslänkarna: vit text, fet stil, padding och rundade hörn. Smooth transition vid hover. */
-    .navbar a {
-        color: var(--text-color);
-        font-size: var(--p-font);
-        font-weight: 600;
-        margin: 5px;
-        transition: all .5s ease;
-        padding: 10px;
-        border-radius: 5px;
-        text-decoration: none;
-    }
+ .navbar a {
+     color: var(--text-color);
+     font-size: var(--p-font);
+     font-weight: 600;
+     margin: 5px;
+     transition: all .5s ease;
+     padding: 10px;
+     border-radius: 5px;
+     text-decoration: none;
+ }
 
  /* Vid hover: bakgrunden ändras till en guldbrun färg. */
 
@@ -109,13 +109,13 @@ span {
     gap: 5px;
 }
 
-    .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text-color);
-        display: block;
-        transition: all 0.3s ease;
-    }
+ .hamburger span {
+     width: 25px;
+     height: 3px;
+     background-color: var(--text-color);
+     display: block;
+     transition: all 0.3s ease;
+ }
 
 #menu-toggle {
     display: none;
@@ -131,72 +131,72 @@ span {
 
     /* Första länken i "följ oss"-sektionen har en unik stil: guldbrun färg, fet stil, gräns och rundade hörn med mörk bakgrund. */
 
-    .follow-oss a:first-child {
-        color: #8D7014;
-        font-size: var(--p-font);
-        margin-right: 15px;
-        border: 3px solid;
-        padding: 7px;
-        border-radius: 5px;
-        background-color: var(--main-color);
-    }
+ .follow-oss a:first-child {
+     color: #8D7014;
+     font-size: var(--p-font);
+     margin-right: 15px;
+     border: 3px solid;
+     padding: 7px;
+     border-radius: 5px;
+     background-color: var(--main-color);
+ }
 
 
-    /* Allmänna länkar i "följ oss"-sektionen: vit text, mellanstorlek och smooth transition vid hover. */
-    .follow-oss a {
-        vertical-align: middle;
-        font-size: 18px;
-        color: var(--text-color);
-        margin-right: 22px;
-        margin-left: 5px;
-        transition: all .5s ease;
-        font-weight: 600;
-    }
+ /* Allmänna länkar i "följ oss"-sektionen: vit text, mellanstorlek och smooth transition vid hover. */
+ .follow-oss a {
+     vertical-align: middle;
+     font-size: 18px;
+     color: var(--text-color);
+     margin-right: 22px;
+     margin-left: 5px;
+     transition: all .5s ease;
+     font-weight: 600;
+ }
 
-        /* Vid hover på första länken: bakgrunden blir transparent och färgen. */
+/* Vid hover på första länken: bakgrunden blir transparent och färgen. */
 
 
-        .follow-oss a:first-child:hover {
-            background: transparent;
-            color: #8C9CA3;
-        }
+.follow-oss a:first-child:hover {
+    background: transparent;
+    color: #8C9CA3;
+}
 
-        /* Vid hover på övriga länkar: textfärgen ändras till guldbrun. */
+ /* Vid hover på övriga länkar: textfärgen ändras till guldbrun. */
 
-        .follow-oss a:hover {
-            color: #8D7014;
-        }
+ .follow-oss a:hover {
+     color: #8D7014;
+ }
 
 /* Centrerar ett element både vertikalt och horisontellt på sidan. */
 
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    padding: 10px;
-    text-align: center;
-    letter-spacing: 1px;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 90%;
+ padding: 10px;
+ text-align: center;
+ letter-spacing: 1px;
 }
 
-    /* Stil på titeln i centerelementet: stor, vit, fet och versaler. */
+ /* Stil på titeln i centerelementet: stor, vit, fet och versaler. */
 
-    .center .title {
-        color: #fff;
-        font-size: 70px;
-        font-weight: 800;
-        text-transform: uppercase;
-    }
+ .center .title {
+     color: #fff;
+     font-size: 70px;
+     font-weight: 800;
+     text-transform: uppercase;
+ }
 
-    /* Stil på undertiteln i centerelementet: vit, mellanstor och fet. */
+ /* Stil på undertiteln i centerelementet: vit, mellanstor och fet. */
 
-    .center .sub-title {
-        color: var(--text-color);
-        font-size: 20px;
-        font-weight: 600;
-        margin-top: 20px;
-    }
+ .center .sub-title {
+     color: var(--text-color);
+     font-size: 20px;
+     font-weight: 600;
+     margin-top: 20px;
+ }
 
 /* Nyhetssektionen har en ljusbrun bakgrund med stora avstånd runt om och placeras längre ner på sidan. */
 
@@ -206,11 +206,11 @@ span {
 }
 
     /* Rubrik (h2) för nyhetssektionen centrerad text. */
-    .news h2 {
-        margin-bottom: 5rem;
-        color: var(--text-color);
-        text-align: center;
-    }
+ .news h2 {
+     margin-bottom: 5rem;
+     color: var(--text-color);
+     text-align: center;
+ }
 
 
 /* Centrering av innehåll med en container som täcker 80% av skärmen. */
@@ -245,12 +245,12 @@ span {
 
     /* Stil för bilder: fyller hela bredden på sin container, har en kantlinje och rundade hörn. */
 
-    .image-box img {
-        width: 100%;
-        height: auto;
-        border: 2px solid var(--border-color);
-        border-radius: 8px;
-    }
+ .image-box img {
+     width: 100%;
+     height: auto;
+     border: 2px solid var(--border-color);
+     border-radius: 8px;
+ }
 
 /* Stil för bildtexten: liten text med mörkgrön färg. */
 
@@ -275,10 +275,10 @@ span {
     border: 2px solid transparent;
 }
 
-    .anmäl-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 50px #8D7014;
-    }
+.anmäl-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px #8D7014;
+}
 
 .footer {
     width: 100%;
@@ -325,15 +325,15 @@ span {
         margin-top: 10px;
     }
 
-        /*  lagt till .center .title //Magnus*/
-        .center .title {
-            font-size: 3rem;
-        }
+     /*  lagt till .center .title //Magnus*/
+     .center .title {
+         font-size: 3rem;
+     }
 
-        /*  lagt till .center .sub-title //Magnus */
-        .center .sub-title {
-            font-size: 1.2rem;
-        }
+     /*  lagt till .center .sub-title //Magnus */
+     .center .sub-title {
+         font-size: 1.2rem;
+     }
 
     /*  lagt till .news //Magnus */
     .news {
@@ -361,11 +361,11 @@ span {
         margin: 0;
     }
 
-        .follow-oss a {
-            flex-grow: 1;
-            text-align: center;
-            margin: 0 5px;
-        }
+    .follow-oss a {
+        flex-grow: 1;
+        text-align: center;
+        margin: 0 5px;
+    }
 
 
     .hamburger {
@@ -424,23 +424,23 @@ span {
 
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    .navbar {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+.navbar {
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-    .container {
-        width: 90%;
-    }
+.container {
+    width: 90%;
+}
 }
 
 @media screen and (min-width: 1024px) {
-    .navbar {
-        max-width: 1200px;
-    }
+.navbar {
+    max-width: 1200px;
+}
 
-    .container {
-        width: 85%;
-        margin: 0 auto;
-    }
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
 }
