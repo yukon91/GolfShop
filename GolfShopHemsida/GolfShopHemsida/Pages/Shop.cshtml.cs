@@ -1,121 +1,50 @@
 using GolfShopHemsida.Models;
-using GolfShopHemsida.Repositories;
 using GolfShopHemsida.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GolfShopHemsida.Pages
 {
     public class ShopModel : PageModel
     {
-        private readonly ItemRepository _itemRepository;
         private readonly ShoppingCartService _cartService;
 
-        public ShopModel(ItemRepository itemRepository, ShoppingCartService cartService)
+        public ShopModel(ShoppingCartService cartService)
         {
-            _itemRepository = itemRepository;
             _cartService = cartService;
             Items = new List<Item>();
+            CartItems = new List<CartItem>();
         }
 
-
-
         public List<Item> Items { get; set; }
-        [TempData]
-        public string SuccessMessage { get; set; }
-        [TempData]
-        public string ErrorMessage { get; set; }
+        public List<CartItem> CartItems { get; set; }
+        public int CartItemCount => CartItems.Sum(item => item.Quantity); // Calculates total items in the cart
+        public decimal CartTotal => CartItems.Sum(item => item.Quantity * item.Item.Price); // Calculates total price of the cart
 
         public async Task OnGetAsync()
         {
-            var items = await _itemRepository.GetAllItemsAsync();
-            Items = items.Select(item => new Item
-            {
-                ItemId = item.ItemId,
-                Name = item.Name,
-                Description = item.Description,
-                Price = item.Price,
-                ImageUrl = item.ImageUrl,
-                Stock = item.Stock
-            }).ToList();
+            // Fetch items from the database
+            Items = await _cartService.GetAvailableItemsAsync();
+
+            // Fetch the user's cart
+            var cart = await _cartService.GetUserCart();
+            CartItems = cart.CartItems;
         }
 
-
-
-        public async Task<JsonResult> OnPostAddToCartAsync(string itemId)
+        public async Task<IActionResult> OnPostAddToCartAsync(string itemId)
         {
             try
             {
-                if (User?.Identity?.IsAuthenticated != true)
-                {
-                    return new JsonResult(new
-                    {
-                        success = false,
-                        message = "Du måste logga in först"
-                    });
-                }
-
-                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                if (string.IsNullOrEmpty(userId))
-                {
-                    return new JsonResult(new
-                    {
-                        success = false,
-                        message = "Kunde inte identifiera användaren"
-                    });
-                }
-
                 await _cartService.AddToCart(itemId);
-
-                // Return updated cart data  
-                var cart = await _cartService.GetUserCart(userId);
-                return new JsonResult(new
-                {
-                    success = true,
-                    count = cart.CartItems.Sum(i => i.Quantity),
-                    total = cart.CartItems.Sum(i => i.Quantity * i.Item.Price)
-                });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return new JsonResult(new
-                {
-                    success = false,
-                    message = ex.Message
-                });
+                return RedirectToPage();
             }
             catch (Exception ex)
             {
-                return new JsonResult(new
-                {
-                    success = false,
-                    message = $"Ett fel uppstod: {ex.Message}"
-                });
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return Page();
             }
-        }
-
-
-        // Cart-related properties (optional - can be removed if using ShoppingCartService directly)
-        public List<CartItem> CartItems { get; set; } = new List<CartItem>();
-        public int CartItemCount => CartItems.Sum(item => item.Quantity);
-        public decimal CartTotal => CartItems.Sum(item => item.Quantity * item.Item.Price);
-
-        public class CartItem
-        {
-            public string CartItemId { get; set; }
-            public Item Item { get; set; }
-            public int Quantity { get; set; }
-        }
-
-        public class Item
-        {
-            public string ItemId { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public decimal Price { get; set; }
-            public string ImageUrl { get; set; }
-            public int Stock { get; set; }
         }
     }
 }

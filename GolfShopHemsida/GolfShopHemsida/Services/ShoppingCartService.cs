@@ -20,53 +20,11 @@ namespace GolfShopHemsida.Services
             return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
-        public async Task<ShoppingCart> GetUserCart(string? userId)
-        {
-            var currentUserId = GetCurrentUserId();
-            if (string.IsNullOrEmpty(currentUserId))
-            {
-                throw new InvalidOperationException("User must be logged in to access cart");
-            }
-
-            // Verify user exists
-            var userExists = await _context.Users.AnyAsync(u => u.Id == currentUserId);
-            if (!userExists)
-            {
-                throw new InvalidOperationException("User account not found");
-            }
-
-            var cart = await _context.ShoppingCarts
-                .Include(c => c.CartItems)
-                .ThenInclude(ci => ci.Item)
-                .FirstOrDefaultAsync(c => c.UserId == currentUserId);
-
-            if (cart == null)
-            {
-                cart = new ShoppingCart
-                {
-                    UserId = currentUserId,
-                    CartItems = new List<CartItem>()
-                };
-                _context.ShoppingCarts.Add(cart);
-                await _context.SaveChangesAsync();
-            }
-
-            return cart;
-        }
-
-        public async Task AddToCart(string itemId, int quantity = 1)
+        public async Task<ShoppingCart> GetUserCart()
         {
             var userId = GetCurrentUserId();
             if (string.IsNullOrEmpty(userId))
-            {
-                throw new UnauthorizedAccessException("User must be logged in");
-            }
-
-            var item = await _context.Items.FindAsync(itemId);
-            if (item == null)
-            {
-                throw new InvalidOperationException("Product not found");
-            }
+                throw new InvalidOperationException("User not logged in.");
 
             var cart = await _context.ShoppingCarts
                 .Include(c => c.CartItems)
@@ -81,21 +39,36 @@ namespace GolfShopHemsida.Services
                     CartItems = new List<CartItem>()
                 };
                 _context.ShoppingCarts.Add(cart);
+                await _context.SaveChangesAsync();
             }
 
-            var existingItem = cart.CartItems.FirstOrDefault(i => i.ItemId == itemId);
+            return cart;
+        }
 
-            if (existingItem != null)
+        public async Task AddToCart(string itemId)
+        {
+            var userId = GetCurrentUserId();
+            if (string.IsNullOrEmpty(userId))
+                throw new InvalidOperationException("User not logged in.");
+
+            var cart = await GetUserCart();
+
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ItemId == itemId);
+            if (cartItem != null)
             {
-                existingItem.Quantity += quantity;
+                cartItem.Quantity++;
             }
             else
             {
+                var item = await _context.Items.FindAsync(itemId);
+                if (item == null || item.Stock <= 0)
+                    throw new InvalidOperationException("Item not available.");
+
                 cart.CartItems.Add(new CartItem
                 {
                     ItemId = itemId,
-                    Quantity = quantity,
-                    ShoppingCartId = cart.ShoppingCartId
+                    Quantity = 1,
+                    Item = item
                 });
             }
 
@@ -124,21 +97,24 @@ namespace GolfShopHemsida.Services
                 throw new InvalidOperationException("User must be logged in to checkout");
             }
 
-            var cart = await GetUserCart(userId);
+            var cart = await GetUserCart();
 
             if (!cart.CartItems.Any())
             {
-                throw new InvalidOperationException("Cannot checkout empty cart");
+                throw new InvalidOperationException("Cannot checkout an empty cart");
             }
 
             // Verify all items still exist and have stock
             foreach (var cartItem in cart.CartItems)
             {
                 var item = await _context.Items.FindAsync(cartItem.ItemId);
-                if (item == null)
+                if (item == null || item.Stock < cartItem.Quantity)
                 {
-                    throw new InvalidOperationException($"Product {cartItem.ItemId} no longer available");
+                    throw new InvalidOperationException($"Product {cartItem.ItemId} is no longer available or out of stock");
                 }
+
+                // Deduct stock
+                item.Stock -= cartItem.Quantity;
             }
 
             var order = new Order
@@ -177,6 +153,13 @@ namespace GolfShopHemsida.Services
                 await transaction.RollbackAsync();
                 throw;
             }
+
+        }
+        public async Task<List<Item>> GetAvailableItemsAsync()
+        {
+            return await _context.Items
+                .Where(item => item.Stock > 0) // Only items with stock greater than 0
+                .ToListAsync();
         }
     }
 }

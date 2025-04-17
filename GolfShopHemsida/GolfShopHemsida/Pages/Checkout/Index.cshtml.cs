@@ -24,8 +24,7 @@ namespace GolfShopHemsida.Pages.Checkout
                 return RedirectToPage("/Account/Login", new { returnUrl = "/Checkout" });
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Cart = await _cartService.GetUserCart(userId);
+            Cart = await _cartService.GetUserCart();
 
             if (!Cart.CartItems.Any())
             {
@@ -42,8 +41,7 @@ namespace GolfShopHemsida.Pages.Checkout
                 return RedirectToPage("/Account/Login");
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cart = await _cartService.GetUserCart(userId);
+            var cart = await _cartService.GetUserCart();
 
             if (cart == null || !cart.CartItems.Any())
             {
@@ -53,7 +51,7 @@ namespace GolfShopHemsida.Pages.Checkout
             // Create a new order  
             var order = new Order
             {
-                UserId = userId,
+                UserId = cart.UserId,
                 OrderDate = DateTime.UtcNow,
                 TotalAmount = cart.CartItems.Sum(item => item.Item.Price * item.Quantity),
                 Status = "Pending",
@@ -61,7 +59,6 @@ namespace GolfShopHemsida.Pages.Checkout
                 {
                     ItemId = item.ItemId,
                     Quantity = item.Quantity,
-                    
                 }).ToList()
             };
 

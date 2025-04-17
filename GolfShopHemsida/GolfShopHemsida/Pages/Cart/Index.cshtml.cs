@@ -2,6 +2,8 @@ using GolfShopHemsida.Models;
 using GolfShopHemsida.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GolfShopHemsida.Pages.Cart
 {
@@ -10,13 +12,18 @@ namespace GolfShopHemsida.Pages.Cart
         private readonly ShoppingCartService _cartService;
 
         public ShoppingCart Cart { get; set; }
+        public List<CartItem> CartItems => Cart?.CartItems ?? new List<CartItem>();
+        public decimal CartTotal => CartItems.Sum(item => item.Quantity * item.Item.Price);
 
         public IndexModel(ShoppingCartService cartService)
         {
             _cartService = cartService;
         }
 
-
+        public async Task OnGetAsync()
+        {
+            Cart = await _cartService.GetUserCart();
+        }
 
         public async Task<IActionResult> OnPostRemoveFromCart(string cartItemId)
         {
@@ -29,6 +36,7 @@ namespace GolfShopHemsida.Pages.Cart
             var order = await _cartService.Checkout();
             return RedirectToPage("/Cart/OrderConfirmation", new { orderId = order.OrderId });
         }
+
         public async Task<IActionResult> OnPostAddToCart(string itemId)
         {
             try

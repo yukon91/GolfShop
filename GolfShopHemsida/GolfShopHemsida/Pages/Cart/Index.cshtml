@@ -1,106 +1,21 @@
 ﻿@page
 @model GolfShopHemsida.Pages.Cart.IndexModel
 @{
-    ViewData["Title"] = "Shopping Cart";
+    ViewData["Title"] = "Din Kundvagn";
 }
-
-<div class="cart-container">
-    <h2>Your Shopping Cart</h2>
-
-    @if (Model.Cart?.CartItems.Any() ?? false)
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Cart.CartItems)
-                {
-                    <tr>
-                        <td>
-                            <img src="@item.Item.ImageUrl" alt="@item.Item.Name" style="width: 50px; height: 50px;">
-                            @item.Item.Name
-                        </td>
-                        <td>@item.Item.Price.ToString("0") kr</td>
-                        <td>@item.Quantity</td>
-                        <td>@((item.Item.Price * item.Quantity).ToString("0")) kr</td>
-                        <td>
-                            <form method="post" asp-page-handler="RemoveFromCart">
-                                <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash'></i> Remove
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3"><strong>Total</strong></td>
-                    <td><strong>@Model.Cart.CartItems.Sum(i => i.Item.Price * i.Quantity).ToString("0")) kr</strong></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-
-        <div class="checkout-section">
-            <a asp-page="/Checkout/Index" class="btn btn-primary checkout-btn">
-                <i class='bx bx-credit-card'></i> Proceed to Checkout
-            </a>
-        </div>
-    }
-    else
-    {
-        <div class="empty-cart">
-            <i class='bx bx-cart'></i>
-            <p>Your cart is empty</p>
-            <a asp-page="/Shop" class="btn btn-primary">Continue Shopping</a>
-        </div>
-    }
-</div>
-
-<style>
-    .cart-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .checkout-section {
-        text-align: right;
-        margin-top: 20px;
-    }
-
-    .checkout-btn {
-        padding: 10px 20px;
-        font-size: 1.1rem;
-    }
-
-    .empty-cart {
-        text-align: center;
-        padding: 50px 0;
-    }
-
-    .empty-cart i {
-        font-size: 5rem;
-        color: #ccc;
-        margin-bottom: 20px;
-    }
-
-    .empty-cart p {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-    }
-</style>
+<h1>Din Kundvagn</h1>
+@if (Model.CartItems.Any())
+{
+    <ul>
+        @foreach (var item in Model.CartItems)
+        {
+            <li>@item.Item.Name - @item.Quantity x @item.Item.Price.ToString("0") kr</li>
+        }
+    </ul>
+    <p><strong>Totalt: @Model.CartTotal.ToString("0") kr</strong></p>
+    <a asp-page="/Checkout/Index" class="btn btn-primary">Till kassan</a>
+}
+else
+{
+    <p>Din kundvagn är tom</p>
+}
