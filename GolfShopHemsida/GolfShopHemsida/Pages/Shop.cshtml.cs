@@ -46,5 +46,19 @@ namespace GolfShopHemsida.Pages
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostRemoveFromCartAsync(string cartItemId)
+        {
+            try
+            {
+                await _cartService.RemoveFromCart(cartItemId);
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return Page();
+            }
+        }
     }
 }
