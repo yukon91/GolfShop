@@ -24,7 +24,13 @@ namespace GolfShopHemsida.Services
         {
             var userId = GetCurrentUserId();
             if (string.IsNullOrEmpty(userId))
-                throw new InvalidOperationException("User not logged in.");
+            {
+                return new ShoppingCart
+                {
+                    UserId = null,
+                    CartItems = new List<CartItem>()
+                };
+            }
 
             var cart = await _context.ShoppingCarts
                 .Include(c => c.CartItems)

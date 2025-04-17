@@ -16,7 +16,6 @@
 </head>
 <body>
     <div class="shop-container">
-        <!-- Main Shop Content -->
         <div class="shop-content">
             <div class="shop-header">
                 <h1>Välkommen till våran shop</h1>
@@ -80,5 +79,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+
+            addToCartForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+            @if (!User.Identity.IsAuthenticated)
+                {
+                     <text>
+                        e.preventDefault();
+                        alert('Du måste logga in för att använda shoppen.');
+                        window.location.href = '/Identity/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname);
+                    </text>
+                }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
