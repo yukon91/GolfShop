@@ -22,32 +22,31 @@
         <div class="order-history-wrapper">
             <h2 class="text-center text-white mb-4">Order History</h2>
 
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Order #1</h5>
-                    <p class="card-text">Date: <strong>01/01/2025</strong></p>
-                    <p class="card-text">Total Price: <strong>$120.00</strong></p>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Order #2</h5>
-                    <p class="card-text">Date: <strong>02/01/2025</strong></p>
-                    <p class="card-text">Total Price: <strong>$45.50</strong></p>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Order #3</h5>
-                    <p class="card-text">Date: <strong>03/01/2025</strong></p>
-                    <p class="card-text">Total Price: <strong>$70.30</strong></p>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
+            @if (Model.Orders?.Count > 0)
+            {
+                @foreach (var order in Model.Orders)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Order #@order.OrderId</h5>
+                            <p class="card-text">Date: <strong>@order.OrderDate.ToShortDateString()</strong></p>
+                            <p class="card-text">Total Amount: <strong>@order.TotalAmount.ToString("C")</strong></p>
+                            <p class="card-text">Status: <strong>@order.Status</strong></p>
+                            <p class="card-text">Items:</p>
+                            <ul>
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li>@item.Item.Name x @item.Quantity (@item.UnitPrice.ToString("C") each)</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center text-white">No orders found.</p>
+            }
         </div>
     </div>
 </body>
