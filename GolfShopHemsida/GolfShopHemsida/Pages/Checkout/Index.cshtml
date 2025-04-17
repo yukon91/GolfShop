@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="order-summary">
-                <h1 class="heading-text">Checkout</h1>
+                <h1 class="heading-text">Kassa</h1>
                 <h3 class="heading-text">Orderöversikt</h3>
                 <ul class="list-group">
                     @foreach (var item in Model.Cart.CartItems)
@@ -29,7 +29,7 @@
                 </ul>
 
                 <form method="post" asp-page-handler="PlaceOrder">
-                    <button type="submit" class="btn btn-primary btn-block center-button">Complete Order</button>
+                    <button type="submit" class="btn btn-primary btn-block center-button">Betala</button>
                 </form>
             </div>
         </div>
