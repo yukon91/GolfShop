@@ -25,10 +25,8 @@ namespace GolfShopHemsida.Pages
 
         public async Task OnGetAsync()
         {
-            // Fetch items from the database
             Items = await _cartService.GetAvailableItemsAsync();
 
-            // Fetch the uses cart
             var cart = await _cartService.GetUserCart();
             CartItems = cart.CartItems;
         }

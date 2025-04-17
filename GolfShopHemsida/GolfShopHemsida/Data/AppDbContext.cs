@@ -25,26 +25,23 @@ public class AppDbContext : IdentityDbContext<GolfShopUser>
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configure Post-User relationship (User has many Posts)
         modelBuilder.Entity<Post>()
             .HasOne(p => p.User)
             .WithMany()
             .HasForeignKey(p => p.GolfShopUserId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Configure Comment-User relationship (User has many Comments)
         modelBuilder.Entity<Comment>()
             .HasOne(c => c.User)
             .WithMany()
             .HasForeignKey(c => c.GolfShopUserId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Configure FollowUser relationships
         modelBuilder.Entity<FollowUser>()
             .HasOne(f => f.Follower)
             .WithMany()
             .HasForeignKey(f => f.FollowerId)
-            .OnDelete(DeleteBehavior.ClientCascade); // Changed from Restrict
+            .OnDelete(DeleteBehavior.ClientCascade);
 
         modelBuilder.Entity<FollowUser>()
             .HasOne(f => f.Followed)

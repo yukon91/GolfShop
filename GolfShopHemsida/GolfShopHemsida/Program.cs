@@ -33,12 +33,10 @@ using (var scope = app.Services.CreateScope())
     var userManager = services.GetRequiredService<UserManager<GolfShopUser>>();
     await SeedData.Initialize(services, userManager);
 
-    // Seed product data
     var context = services.GetRequiredService<AppDbContext>();
     DbInitializer.Initialize(context);
 }
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

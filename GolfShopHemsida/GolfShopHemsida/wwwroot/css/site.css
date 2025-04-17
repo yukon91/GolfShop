@@ -85,15 +85,16 @@ span {
 
 
  /* Stil på navigeringslänkarna: vit text, fet stil, padding och rundade hörn. Smooth transition vid hover. */
- .navbar a {
-     color: var(--text-color);
-     font-size: var(--p-font);
-     font-weight: 600;
-     margin: 5px;
-     transition: all .5s ease;
-     padding: 10px;
-     border-radius: 5px;
- }
+    .navbar a {
+        color: var(--text-color);
+        font-size: var(--p-font);
+        font-weight: 600;
+        margin: 5px;
+        transition: all .5s ease;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
 
  /* Vid hover: bakgrunden ändras till en guldbrun färg. */
 
