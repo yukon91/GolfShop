@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GolfShopHemsida.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417160710_InitialCreate")]
+    [Migration("20250417162725_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
