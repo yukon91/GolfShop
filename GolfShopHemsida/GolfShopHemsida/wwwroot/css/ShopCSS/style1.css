@@ -1,4 +1,4 @@
-/* Main Container */
+
 .shop-container {
     display: grid;
     grid-template-columns: 1fr 350px;
@@ -8,9 +8,10 @@
     padding: 2rem;
 }
 
-/* Shop Content */
+
 .shop-content {
     grid-column: 1;
+    margin-top: -31px
 }
 
 .shop-header {
@@ -18,7 +19,7 @@
     text-align: center;
 }
 
-/* Products Grid */
+
 .produkter {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -46,7 +47,7 @@
         margin-bottom: 1rem;
     }
 
-/* Cart Sidebar */
+
 .cart-sidebar {
     grid-column: 2;
     position: sticky;
@@ -137,7 +138,6 @@
         background: #1e7a1e;
     }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .shop-container {
         grid-template-columns: 1fr;
