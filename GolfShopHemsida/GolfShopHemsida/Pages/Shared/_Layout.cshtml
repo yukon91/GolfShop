@@ -29,12 +29,6 @@
             else
             {
                 <li><a asp-area="Identity" asp-page="/Account/Login">Medlemssektion</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-page="/Cart/Index">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-page="/Account/Orders">My Orders</a>
-                </li>
             }
             @if (User.IsInRole("Admin"))
             {
