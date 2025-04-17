@@ -4,30 +4,46 @@
     ViewData["Title"] = "Order History";
 }
 
-<h2>Your Order History</h2>
+<div class="order-history-wrapper py-5 mb-5">
+    <div class="container mb-5">
+        <h2 class="mb-4 text-center text-white">Din order historik</h2>
 
-@if (Model.Orders.Any())
-{
-    foreach (var order in Model.Orders)
-    {
-        <div class="order-card">
-            <h4>Order #@order.OrderId - @order.OrderDate.ToString("g")</h4>
-            <p>Total: @order.TotalAmount.ToString("C")</p>
+        @if (Model.Orders.Any())
+        {
+            foreach (var order in Model.Orders)
+            {
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Order #@order.OrderId</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@order.OrderDate.ToString("g")</h6>
+                        <p class="fw-bold">Total: @order.TotalAmount.ToString("C")</p>
 
-            <table class="table">
-                @foreach (var item in order.OrderItems)
-                {
-                    <tr>
-                        <td>@item.Item.Name</td>
-                        <td>@item.Quantity x @item.UnitPrice.ToString("C")</td>
-                        <td>@((item.Quantity * item.UnitPrice).ToString("C"))</td>
-                    </tr>
-                }
-            </table>
-        </div>
-    }
-}
-else
-{
-    <p>You haven't placed any orders yet.</p>
-}
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Produkt</th>
+                                    <th>Antal & Pris</th>
+                                    <th>Totalt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <tr>
+                                        <td>@item.Item.Name</td>
+                                        <td>@item.Quantity x @item.UnitPrice.ToString("C")</td>
+                                        <td>@((item.Quantity * item.UnitPrice).ToString("C"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info">Du har inte gjort några beställningar än.</div>
+        }
+    </div>
+</div>
