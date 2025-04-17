@@ -1,31 +1,31 @@
-﻿@page
-@model GolfShopHemsida.Pages.Admin.PurchaseHistoryModel
+﻿@page  
+@model GolfShopHemsida.Pages.Admin.PurchaseHistoryModel  
 
-<h2>Köp historik</h2>
+<h2>Köp historik</h2>  
 
-@if (Model.Orders?.Count > 0)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Dag</th>
-                <th>Kund</th>
-                <th>Pris</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model.Orders)
-            {
-                <tr>
-                    <td>@order.OrderDate.ToShortDateString()</td>
-                    <td>@order.User?.Namn</td>
-                    <td>@order.TotalAmount.ToString("C")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>Inga köp hittade.</p>
+@if (Model.Orders?.Count > 0)  
+{  
+   <table class="table">  
+       <thead>  
+           <tr>  
+               <th>Dag</th>  
+               <th>Kund</th>  
+               <th>Pris</th>    
+           </tr>  
+       </thead>  
+       <tbody>  
+           @foreach (var order in Model.Orders)  
+           {  
+               <tr>  
+                   <td>@order.OrderDate.ToShortDateString()</td>  
+                   <td>@order.User?.Namn</td>  
+                   <td>@order.TotalAmount.ToString("C")</td>
+               </tr>  
+           }  
+       </tbody>  
+   </table>  
+}  
+else  
+{  
+   <p>Inga köp hittade.</p>  
 }
