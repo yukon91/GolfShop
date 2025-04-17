@@ -3,19 +3,30 @@
 @{
     ViewData["Title"] = "Din Kundvagn";
 }
-<h1>Din Kundvagn</h1>
+
 @if (Model.CartItems.Any())
 {
-    <ul>
-        @foreach (var item in Model.CartItems)
-        {
-            <li>@item.Item.Name - @item.Quantity x @item.Item.Price.ToString("0") kr</li>
-        }
-    </ul>
-    <p><strong>Totalt: @Model.CartTotal.ToString("0") kr</strong></p>
-    <a asp-page="/Checkout/Index" class="btn btn-primary">Till kassan</a>
+    <div class="card shadow-sm p-4 mb-4">
+        <h1 class="mb-4 text-center">Din Kundvagn</h1>
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model.CartItems)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>@item.Item.Name</strong><br />
+                        <small>@(item.Quantity) x @(item.Item.Price.ToString("0")) kr</small>
+                    </div>
+                    <span>@((item.Quantity * item.Item.Price).ToString("0")) kr</span>
+                </li>
+            }
+        </ul>
+        <div class="text-end mt-3">
+            <p class="fw-bold fs-5">Totalt: @(Model.CartTotal.ToString("0")) kr</p>
+            <a asp-page="/Checkout/Index" class="btn btn-primary">Till kassan</a>
+        </div>
+    </div>
 }
 else
 {
-    <p>Din kundvagn är tom</p>
+    <div class="alert alert-info">Din kundvagn är tom</div>
 }
