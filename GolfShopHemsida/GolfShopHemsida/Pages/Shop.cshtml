@@ -1,0 +1,255 @@
+﻿@page
+@model GolfShopHemsida.Pages.ShopModel
+@{
+}
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/ShopCSS/style1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+<main>
+    <div class="shop-background">
+        <div class="shop">Välkommen till våran shop</div>
+
+        <div class="set">Golf set</div>
+        <section class="produkter">
+            <div class="produkt">
+                <img src="./Images/Shop/Golfset-barn.png" alt="Produkt 1">
+                <h2>Golf-set Junior</h2>
+                <p>749 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                <img src="./Images/Shop/Callaway-golfset.png" alt="Produkt 2">
+                <h2>Callaway-XL</h2>
+                <p>3400 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/X-LZR-womens-set.jpg" alt="Produkt 3">
+                <h2>X LZR Womens</h2>
+                <p>2200 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/Callaway-Pro-mens.jpg" alt="Produkt 4">
+                <h2>Callaway-Pro</h2>
+                <p>5499 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+        </section>
+
+        <div class="klubbor">Klubbor</div>
+        <section class="produkter2">
+            <div class="produkt">
+                    <img src="./Images/Shop/Drivers.png" alt="Produkt 5">
+                <h2>Drivers</h2>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Taylor Made Stealth 2</span>
+                                    <span class="item-price">2500 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Ping G425 Max</span>
+                                    <span class="item-price">1900 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Callaway Paradym</span>
+                                    <span class="item-price">2900 kr</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/FAIRWAY-WOODS.png" alt="Produkt 6">
+                <h2>Fairway woods</h2>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Cobra Darkspeed X</span>
+                                    <span class="item-price">2000 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Wilson Launch Pad 2</span>
+                                    <span class="item-price">1500 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Srixon ZX</span>
+                                    <span class="item-price">1700 kr</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/PUTTER.png" alt="Produkt 7">
+                <h2>Putters</h2>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">TaylorMade Spidertour X</span>
+                                    <span class="item-price">1900 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Odyssey Elven Tour</span>
+                                    <span class="item-price">1600 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Cleveland Frontline Iso</span>
+                                    <span class="item-price">1200 kr</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/WEDGAR.jpg" alt="Produkt 8">
+                <h2>Wedgars</h2>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Cleveland RTX6</span>
+                                    <span class="item-price">2700 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Callaway Opus</span>
+                                    <span class="item-price">1800 kr</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="dropdown-row">
+                                    <span class="item-name">Titleist SM10</span>
+                                    <span class="item-price">2100 kr</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+        </section>
+
+        <div class="set">Bollar</div>
+        <section class="produkter">
+            <div class="produkt">
+                    <img src="./Images/Shop/titleist.jpg" alt="Produkt 9">
+                <h2>Titleist Pro V1</h2>
+                <p>600 kr (dussin)</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/callaway.png" alt="Produkt 10">
+                <h2>Callaway Chrome</h2>
+                <p>550 kr (dussin)</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/pinnacle.jpg" alt="Produkt 11">
+                <h2>Pinnacle Rush</h2>
+                <p>400 kr (dussin)</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/bridgestone.jpg" alt="Produkt 12">
+                <h2>Bridgestone E6</h2>
+                <p>500 kr (dussin)</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+        </section>
+
+        <div class="set">Tillbehör</div>
+        <section class="produkter2">
+            <div class="produkt">
+                    <img src="./Images/Shop/handskar.png" alt="Produkt 13">
+                <h2>Golfhandskar</h2>
+                <p>150 kr per styck</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/tees.jpg" alt="Produkt 14">
+                <h2>Golf-tees</h2>
+                <p>50 kr per paket</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/bag.jpg" alt="Produkt 15">
+                <h2>Golfbag</h2>
+                <p>1250 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+            <div class="produkt">
+                    <img src="./Images/Shop/mätare.jpg" alt="Produkt 16">
+                <h2>Avståndsmätare</h2>
+                <p>3500 kr</p>
+                <button>Lägg i kundvagn</button>
+            </div>
+        </section>
+    </div>
+</main>
+
+ <script>
+     const isLoggedIn = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+     const buttons = document.querySelectorAll('button');
+
+     buttons.forEach(button => {
+         button.addEventListener('click', function(e) {
+             if (!isLoggedIn) {
+                 e.preventDefault();
+                 alert('Vänligen logga in eller skapa konto för att lägga till en produkt i kundvagnen.');
+             } else {
+                 console.log("Produkt tillagd i kundvagn!");
+             }
+         });
+     });
+
+     const dropdownLinks = document.querySelectorAll('.dropcontent a');
+
+     dropdownLinks.forEach(link => {
+         link.addEventListener('click', function(e) {
+             if (!isLoggedIn) {
+                 e.preventDefault();
+                 alert('Vänligen logga in eller skapa konto för att lägga till en produkt i kundvagnen.');
+             } else {
+                 console.log("Produkt tillagd i kundvagn!");
+             }
+         });
+     });
+ </script>
+</body>
+</html>

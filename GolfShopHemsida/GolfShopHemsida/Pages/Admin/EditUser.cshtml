@@ -1,0 +1,23 @@
+﻿@page
+@model GolfShopHemsida.Pages.Admin.EditUserModel
+@{
+}
+
+<h2>Edit User</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="UserToEdit.Email"></label>
+        <input asp-for="UserToEdit.Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UserToEdit.Namn"></label>
+        <input asp-for="UserToEdit.Namn" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UserToEdit.Adress"></label>
+        <input asp-for="UserToEdit.Adress" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Spara</button>
+    <a asp-page="/Admin/AdminUser" class="btn btn-secondary">Avbryt</a>
+</form>

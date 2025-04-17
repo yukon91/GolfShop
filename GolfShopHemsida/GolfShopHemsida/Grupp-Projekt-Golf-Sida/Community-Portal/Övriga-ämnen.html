@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommunityPortal</title>
+    <link rel="stylesheet" href="./CommunityCSS/Produkter.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="navbar">
+            <li><a href="../Startsida/index.html">Home</a></li>
+            <li><a href="../Medlem/Login.html">Medlemssektion</a></li>
+            <li><a href="../Boka/Boka.html">Boka</a></li>
+            <li><a href="../Om-oss/Om-oss.html">Om&nbsp;oss</a></li>
+        </ul>
+        <div class="follow-oss">
+            <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
+            <a href="../Shop/shop.html"><i class='bx bx-shopping-bag'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="../Kontakt och Besök/Kontakt och Besök.html"><i class='bx bxs-user'></i></a>
+            <a href="#"><i class='bx bx-message-dots'></i></a>
+            <a href="#" id="cart-icon"><i class='bx bx-cart'></i></a>           
+        </div>    
+    </header>
+
+    <main>
+        <section class="forum">
+            <h2>Övrigt</h2>
+            <form id="thread-form">
+                <input type="text" id="thread-title" placeholder="Titel" required>
+                <textarea id="thread-content" placeholder="Innehåll..." required></textarea>
+                <button type="submit">Skapa tråd</button>
+            </form>
+            <div class="threads"></div>
+        </section>
+    </main>
+        
+    <script>
+        // JavaScript to handle threads
+        document.getElementById('thread-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('thread-title').value;
+            const content = document.getElementById('thread-content').value;
+
+            const thread = document.createElement('div');
+            thread.classList.add('thread');
+            thread.innerHTML = `
+                <h3>${title}</h3>
+                <p>${content}</p>
+                <div class="replies"></div>
+                <form class="reply-form">
+                    <textarea placeholder="Skriv svar här..." required></textarea>
+                    <button type="submit">Skicka</button>
+                </form>
+            `;
+
+            document.querySelector('.threads').appendChild(thread);
+
+            document.getElementById('thread-form').reset();
+        });
+
+        document.addEventListener('submit', function(event) {
+            if (event.target.classList.contains('reply-form')) {
+                event.preventDefault();
+                const replyContent = event.target.querySelector('textarea').value;
+
+                const reply = document.createElement('div');
+                reply.classList.add('reply');
+                reply.innerHTML = `<p><strong>User:</strong> ${replyContent}</p>`;
+
+                event.target.previousElementSibling.appendChild(reply);
+
+                event.target.reset();
+            }
+        });
+    </script>
+    
+    <footer>
+        <p>Copyright &#169; 2024</p>
+        <p>West Coast Golf &#8482;</p>
+    </footer>
+    
+
+</body>
+</html>

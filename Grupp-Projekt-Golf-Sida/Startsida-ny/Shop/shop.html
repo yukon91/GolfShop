@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Store</title>
+    <link rel="stylesheet" href="style1.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="navbar">
+            <li><a href="../Startsida/index.html">Home</a></li>
+            <li><a href="../Medlem/Login.html">Medlemssektion</a></li>
+            <li><a href="../Boka/Boka.html">Boka</a></li>
+            <li><a href="../Om-oss/Om-oss.html">Om&nbsp;oss</a></li>
+        </ul>
+        <div class="follow-oss">
+            <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
+            <a href="../Startsida/index.html"><i class='bx bx-home-heart'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="../Kontakt och Besök/Kontakt och Besök.html"><i class='bx bxs-user'></i></a>
+            <a href="#" id="cart-icon"><i class='bx bx-cart'></i></a>           
+        </div>
+        
+    </header>
+
+    <main>
+        <div class="shop-background">
+            <div class="shop">Välkommen till våran shop</div>
+
+            <div class="set">Golf set</div>
+            <section class="produkter">
+                <div class="produkt">
+                    <img src="./image/Golfset-barn.png" alt="Produkt 1">
+                    <h2>Golf-set Junior</h2>
+                    <p>749 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/Callaway-golfset.png" alt="Produkt 2">
+                    <h2>Callaway-XL</h2>
+                    <p>3400 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/X-LZR-womens-set.jpg" alt="Produkt 3">
+                    <h2>X LZR Womens</h2>
+                    <p>2200 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/Callaway-Pro-mens.jpg" alt="Produkt 4">
+                    <h2>Callaway-Pro</h2>
+                    <p>5499 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+            </section>
+    
+            <div class="klubbor">Klubbor</div>
+            <section class="produkter2">
+                <div class="produkt">
+                    <img src="./image/Drivers.png" alt="Produkt 5">
+                    <h2>Drivers</h2>
+                    <p>300-2500 kr</p>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">Taylor Made Stealth 2</a>
+                            <a href="#">Ping G425 Max</a>
+                            <a href="#">Callaway Paradym</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="produkt">
+                    <img src="./image/FAIRWAY-WOODS.png" alt="Produkt 6">
+                    <h2>Fairway woods</h2>
+                    <p>200-2000 kr</p>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">Cobra Darkspeed X</a>
+                            <a href="#">Wilson Launch Pad 2</a>
+                            <a href="#">Srixon ZX</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="produkt">
+                    <img src="./image/PUTTER.png" alt="Produkt 7">
+                    <h2>Putters</h2>
+                    <p>250-1900 kr</p>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">TaylorMade Spidertour X</a>
+                            <a href="#">Odyssey Elven Tour</a>
+                            <a href="#">Cleveland Frontline Iso</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="produkt">
+                    <img src="./image/WEDGAR.jpg" alt="Produkt 8">
+                    <h2>Wedgars</h2>
+                    <p>200-2400 kr</p>
+                    <div class="dropdown">
+                        <button class="dropbutton">Välj klubba</button>
+                        <div class="dropcontent">
+                            <a href="#">Cleveland RTX6</a>
+                            <a href="#">Callaway Opus</a>
+                            <a href="#">Titleist SM10</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <div class="set">Bollar</div>
+            <section class="produkter">
+                <div class="produkt">
+                    <img src="./image/titleist.jpg" alt="Produkt 9">
+                    <h2>Titleist Pro V1</h2>
+                    <p>600 kr (dussin)</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/callaway.png" alt="Produkt 10">
+                    <h2>Callaway Chrome</h2>
+                    <p>550 kr (dussin)</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/pinnacle.jpg" alt="Produkt 11">
+                    <h2>Pinnacle Rush</h2>
+                    <p>400 kr (dussin)</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/bridgestone.jpg" alt="Produkt 12">
+                    <h2>Bridgestone E6</h2>
+                    <p>500 kr (dussin)</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+            </section>
+    
+            <div class="set">Tillbehör</div>
+            <section class="produkter2">
+                <div class="produkt">
+                    <img src="./image/handskar.png" alt="Produkt 13">
+                    <h2>Golfhandskar</h2>
+                    <p>150 kr per styck</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/tees.jpg" alt="Produkt 14">
+                    <h2>Golf-tees</h2>
+                    <p>50 kr per paket</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/bag.jpg" alt="Produkt 15">
+                    <h2>Golfbag</h2>
+                    <p>1250 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+                <div class="produkt">
+                    <img src="./image/mätare.jpg" alt="Produkt 16">
+                    <h2>Avståndsmätare</h2>
+                    <p>3500 kr</p>
+                    <button>Lägg i kundvagn</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+
+    <footer>
+        <p>Copyright &#169; 2024</p>
+        <p>West Coast Golf &#8482;</p>
+    </footer>
+    
+</body>
+</html>

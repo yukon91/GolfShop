@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sv-SE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startsida</title>
+    <link rel="stylesheet" href="../Boka/boka-css/boka.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <header>
+        <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <ul class="navbar">
+            <li><a href="../Startsida/index.html">Home</a></li>
+            <li><a href="../Medlem/Login.html">Medlemssektion</a></li>
+            <li><a href="../Boka/Boka.html">Boka</a></li>
+            <li><a href="../Om-oss/Om-oss.html">Om&nbsp;oss</a></li>
+        </ul>
+
+
+        <div class="follow-oss">
+            <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
+            <a href="../Shop/shop.html"><i class='bx bx-shopping-bag'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="../Kontakt och Besök/Kontakt och Besök.html"><i class='bx bxs-user'></i></a>
+        </div>
+
+
+    </header>
+    
+    <main>
+        <section class="booking-container">
+                <h1>Boka din tid</h1>
+                <form action="#" method="post" class="booking-form">
+                    <label for="name">Förnamn och efternamn:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="phone">Telefon:</label>
+                    <input type="tel" id="phone" name="phone">
+    
+                    <label for="email">E-post:</label>
+                    <input type="email" id="email" name="email" required>
+        
+                    <label for="date">Datum:</label>
+                    <input type="date" id="date" name="date" required>
+        
+                    <label for="time">Bokningstid:</label>
+                    <input type="time" id="time" name="time" required>
+        
+                    <label id="golf-course">Bana:</label>
+                    <select name="golf-course" required>
+                        <option value="">-- Välj golfbana/ drivebana --</option>
+                        <option value="golfbana-1">Golfbana 1</option>
+                        <option value="golfbana-2">Golfbana 2</option>
+                        <option value="golfbana-3">Golfbana 3</option>
+                        <option value="longrange">Long range bana</option>
+                        <option value="shortrange">Short range bana</option>
+                    </select>
+
+                    <label for="guests">Antal spelare:</label>
+                    <input type="number" id="guests" name="guests" min="1" max="10" required>
+        
+                    <label for="message">Meddelande:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Ytterligare noteringar?"></textarea>
+        
+                    <button type="submit">Skicka bokning</button>
+                </form>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright &#169; 2024</p>
+        <p>West Coast Golf &#8482;</p>
+    </footer>
+</body>
+</html>

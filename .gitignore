@@ -1,0 +1,23 @@
+## .NET ##
+**/bin/
+**/obj/
+**/appsettings*.json
+**/appsettings*.Development.json
+
+## EF Core Migrations (keep these) ##
+!**/Migrations/
+
+## Build outputs ##
+**/wwwroot/staticwebassets/
+**/node_modules/
+**/.vs/
+**/.vscode/
+
+# .NET Build Outputs
+**/bin/
+**/obj/
+**/.vs/
+
+# Static Web Assets
+**/staticwebassets.*
+**/*.staticwebassets.*

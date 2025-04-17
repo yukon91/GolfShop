@@ -1,0 +1,65 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+<div class="center">
+    <div class="title">Gör din golfresa till oss</div>
+    <div class="sub-title">
+        Nu är det dags att ta fram golfklubborna från förråden och värma upp svingen. Sjöutsikt
+        på den ena sidan och möjligheten att studera svingar på den andra. Med bara några meter till driving range
+        och 18 fina golfhål har vi det perfekta boendet för dig
+    </div>
+</div>
+
+<section class="news" id="news">
+    <h2 class="heading">Nyheter och uppdateringar</h2>
+    <div class="image-row">
+        <div class="image-box">
+            <img src="~/Images/Startsida/helena-lopes-PGnqT0rXWLs-unsplash.jpg" alt="gruppbild">
+            <p class="image-text">
+                Glöm inte att anmäla er till nästa [evenemang eller aktivitet] som äger rum den
+                [datum]. Vi har några spännande överraskningar planerade, och det är ett perfekt tillfälle att
+                nätverka och ha kul. Mer information finns på vår hemsida.
+            </p>
+            <a href="../Tävlingar och Evenemang/ToE_index.html"><button class="anmäl-btn">Anmäl dig</button></a>
+        </div>
+        <div class="image-box">
+            <img src="./Images/Startsida/matt-seymour-Sv8cETYAb1Y-unsplash.jpg" alt="man som slår en golfboll">
+            <p class="image-text">
+                Vi vill tacka alla som deltog i vårt senaste evenemang, [beskriv evenemanget]. Det
+                var en stor framgång med över 50 deltagare, och vi fick mycket positiv feedback. En särskild eloge
+                till vårt fantastiska volontärteam!
+            </p>
+        </div>
+        <div class="image-box">
+            <img src="./Images/Startsida/richard-stott-C7C8MpE3mfY-unsplash.jpg" alt="stor härlig publik">
+            <p class="image-text">
+                Vi vill även hälsa våra nya medlemmar varmt välkomna! Om ni har några frågor eller
+                behöver hjälp med något, tveka inte att kontakta styrelsen eller någon av våra mentorer.
+            </p>
+            <a href="../Medlem/Login.html"><button class="anmäl-btn">Bli Medlem</button></a>
+        </div>
+
+</section>
+
+    <script src="~/js/registerConfirmation.js"></script>
+</body>
+</html>

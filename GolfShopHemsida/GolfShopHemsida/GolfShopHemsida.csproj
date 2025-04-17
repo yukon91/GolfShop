@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\ShopCSS\bag.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\bg.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\bridgestone.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\Callaway-golfset.png" />
+    <Content Remove="wwwroot\css\ShopCSS\Callaway-Pro-mens.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\Callaway-pro.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\callaway.png" />
+    <Content Remove="wwwroot\css\ShopCSS\Drivers.png" />
+    <Content Remove="wwwroot\css\ShopCSS\FAIRWAY-WOODS.png" />
+    <Content Remove="wwwroot\css\ShopCSS\golf.png" />
+    <Content Remove="wwwroot\css\ShopCSS\Golfset-barn.png" />
+    <Content Remove="wwwroot\css\ShopCSS\handskar.png" />
+    <Content Remove="wwwroot\css\ShopCSS\mätare.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\pinnacle.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\PUTTER.png" />
+    <Content Remove="wwwroot\css\ShopCSS\shopping-cart.png" />
+    <Content Remove="wwwroot\css\ShopCSS\style1.css" />
+    <Content Remove="wwwroot\css\ShopCSS\tees.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\titleist.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\WEDGAR.jpg" />
+    <Content Remove="wwwroot\css\ShopCSS\X-LZR-womens-set.jpg" />
+    <Content Remove="wwwroot\Images\bg.jpg" />
+    <Content Remove="wwwroot\Images\golf.png" />
+    <Content Remove="wwwroot\Images\Login_Medlem\golf.png" />
+    <Content Remove="wwwroot\Images\Login_Medlem\nineteen.png" />
+    <Content Remove="wwwroot\Images\Login_Medlem\platinum.png" />
+    <Content Remove="wwwroot\Images\Login_Medlem\westcoast.png" />
+    <Content Remove="wwwroot\Images\Startsida\helena-lopes-PGnqT0rXWLs-unsplash.jpg" />
+    <Content Remove="wwwroot\Images\Startsida\matt-seymour-Sv8cETYAb1Y-unsplash.jpg" />
+    <Content Remove="wwwroot\Images\Startsida\richard-stott-C7C8MpE3mfY-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Shop\bag.jpg" />
+    <None Include="wwwroot\Images\Shop\bg.jpg" />
+    <None Include="wwwroot\Images\Shop\bridgestone.jpg" />
+    <None Include="wwwroot\Images\Shop\Callaway-golfset.png" />
+    <None Include="wwwroot\Images\Shop\Callaway-Pro-mens.jpg" />
+    <None Include="wwwroot\Images\Shop\Callaway-pro.jpg" />
+    <None Include="wwwroot\Images\Shop\callaway.png" />
+    <None Include="wwwroot\Images\Shop\Drivers.png" />
+    <None Include="wwwroot\Images\Shop\FAIRWAY-WOODS.png" />
+    <None Include="wwwroot\Images\Shop\golf.png" />
+    <None Include="wwwroot\Images\Shop\Golfset-barn.png" />
+    <None Include="wwwroot\Images\Shop\handskar.png" />
+    <None Include="wwwroot\Images\Shop\mätare.jpg" />
+    <None Include="wwwroot\Images\Shop\pinnacle.jpg" />
+    <None Include="wwwroot\Images\Shop\PUTTER.png" />
+    <None Include="wwwroot\Images\Shop\shopping-cart.png" />
+    <None Include="wwwroot\css\ShopCSS\style1.css" />
+    <None Include="wwwroot\Images\Shop\tees.jpg" />
+    <None Include="wwwroot\Images\Shop\titleist.jpg" />
+    <None Include="wwwroot\Images\Shop\WEDGAR.jpg" />
+    <None Include="wwwroot\Images\Shop\X-LZR-womens-set.jpg" />
+    <None Include="wwwroot\Images\Bakgrund\bg.jpg" />
+    <None Include="wwwroot\Images\Bakgrund\golf.png" />
+    <None Include="wwwroot\Images\Login_Medlem\golf.png" />
+    <None Include="wwwroot\Images\Login_Medlem\nineteen.png" />
+    <None Include="wwwroot\Images\Login_Medlem\platinum.png" />
+    <None Include="wwwroot\Images\Login_Medlem\westcoast.png" />
+    <None Include="wwwroot\Images\Startsida\helena-lopes-PGnqT0rXWLs-unsplash.jpg" />
+    <None Include="wwwroot\Images\Startsida\matt-seymour-Sv8cETYAb1Y-unsplash.jpg" />
+    <None Include="wwwroot\Images\Startsida\richard-stott-C7C8MpE3mfY-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Profile_Pictures\" />
+  </ItemGroup>
+
+</Project>

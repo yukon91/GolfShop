@@ -1,0 +1,309 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Deklarerar CSS-variabler för att lätt kunna ändra färger och storlekar på text och bakgrund. */
+
+:root {
+    --text-color: #FDFFF5;
+    --bg-color: #8C8453;
+    --main-color: #1B1E10;
+    --border-color: #677786;
+    --h1-front: 5.5rem;
+    --h2-front: 3rem;
+    --p-font: 1.2rem;
+}
+
+/* Inställningar för body: färg och bakgrundsbild, där bilden täcker hela bakgrunden och stannar fast vid scroll. */
+
+body {
+    color: var(--text-color);
+    background: var(--bg-color);
+    background-image: url("../image/golf.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Header är fixerat längst upp och täcker hela bredden. Innehållet placeras horisontellt med flexbox och en suddig bakgrund används. */
+
+header {
+    top: 0px;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    margin-top: 10px;
+}
+
+/* Stil på logotypen: stor text, vit färg och fet stil. */
+.logo {
+    font-size: 50px;
+    color: var(--text-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Färgar all text inuti span-element med huvudfärgen. */
+
+span {
+    color: var(--main-color);
+}
+
+/* Flexbox-layout för navigeringsfältet (navbar) för horisontell placering av länkar. */
+
+.navbar {
+    display: flex;
+    list-style: none;
+}
+
+
+/* Stil på navigeringslänkarna: vit text, fet stil, padding och rundade hörn. Smooth transition vid hover. */
+.navbar a {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    font-weight: 600;
+    margin: 5px;
+    transition: all .5s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Vid hover: bakgrunden ändras till en guldbrun färg. */
+
+.navbar a:hover {
+    background: #8D7014;
+}
+
+/* Flexbox för "följ oss"-sektionen med vertikal centrering. */
+
+.follow-oss {
+    display: flex;
+    align-items: center;
+}
+
+/* Första länken i "följ oss"-sektionen har en unik stil: guldbrun färg, fet stil, gräns och rundade hörn med mörk bakgrund. */
+
+.follow-oss a:first-child {
+    color: #8D7014;
+    font-size: var(--p-font);
+    margin-right: 15px;
+    border: 3px solid;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--main-color);
+}
+
+
+/* Allmänna länkar i "följ oss"-sektionen: vit text, mellanstorlek och smooth transition vid hover. */
+.follow-oss a {
+    vertical-align: middle;
+    font-size: 17px;
+    color: var(--text-color);
+    margin-right: 22px;
+    margin-left: 5px;
+    transition: all .5s ease;
+    font-weight: 600;
+}
+
+/* Vid hover på första länken: bakgrunden blir transparent och färgen. */
+
+
+.follow-oss a:first-child:hover {
+    background: transparent;
+    color: #8C9CA3;
+}
+
+/* Vid hover på övriga länkar: textfärgen ändras till guldbrun. */
+
+.follow-oss a:hover {
+    color: #8D7014;
+
+    
+}
+
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #747474d3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: rgb(58, 58, 58);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.section h2 {
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+.membership-img,
+.handicap-img {
+    max-width: 30%;
+    margin-left: 35%;
+}
+
+.cancel-button {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cancel-button:hover {
+    background-color: #d43c3c;
+    transform: scale(1.03);
+}
+
+/* Färgar all text inuti span-element med huvudfärgen. */
+
+span {
+    color: var(--main-color);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    display: block;
+    transition: all 0.3s ease;
+}
+
+
+footer {
+    position: fixed;
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    bottom: 0; 
+    width: 100%;
+}
+
+@media (max-width:1281px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .container{ zoom: 80%;}
+    .information{width: 100%}
+    .medlemskap{width: 100%}
+    .handikapp{width: 100%}
+    .nineteen{width:15%}
+    .platinum{width:15%}
+    ul.a{font-size: 2em;}
+    .handikapp{margin-bottom: 6rem;}
+}
+
+@media (max-width:1025px) 
+{ /* smartphones, Android phones, landscape iPhone */ 
+    .container{ zoom: 80%;}
+    .information{width: 125%}
+    .medlemskap{width: 125%}
+    .handikapp{width: 125%}
+    .nineteen{width:20%}
+    .platinum{width:20%}
+    ul.a{font-size: 2em;}
+    .button{width: 15%; font-size: 1.5em}
+}
+
+
+@media (max-width: 701px){
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 150px;
+        width: 100%;
+        background-color: var(--main-color);
+        z-index: 999;
+    }
+    .hamburger {
+        display: flex;
+        position: relative;
+        z-index: 1000;
+        padding: 50px
+    }
+    #menu-toggle:checked+.hamburger+.navbar {
+        display: flex;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 5px);
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -5px);
+    }
+    
+}
+
+@media (max-width:600px)  
+{ /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+    .container{ zoom: 115%;}
+    .information{width: 145%;}
+    .medlemskap{width: 145%;}
+    .handikapp{width: 145%;}
+    .nineteen{width:30%}
+    .platinum{width:30%}
+    ul.a{font-size: 2em;}
+    .button{width: 30%; font-size: 1.5em;}
+    li{list-style-type: none}
+}
+
+@media (max-width:480px) { /* big landscape tablets, laptops, and desktops */ 
+    .container{ zoom: 150%;}
+    .information{width: 200%;}
+    .medlemskap{width: 200%;}
+    .handikapp{width: 200%;}
+    .button{width: 45%; font-size: 1.5em;}
+}
+
+
+

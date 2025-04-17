@@ -1,0 +1,313 @@
+ 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+}
+button {
+    background-color: var(--main-color); /* Knappens bakgrundsfärg */
+    color: var(--text-color); /* Textens färg */
+    padding: 10px 20px; /* Padding runt texten */
+    font-size: 1.5rem; /* Gör texten större */
+    border: 2px solid var(--border-color); /* Lägg till en kantlinje */
+    border-radius: 8px; /* Rundade hörn */
+    cursor: pointer; /* Visar pekaren som en hand när man hovrar */
+    transition: all 0.3s ease; /* Smooth transition för hover-effekten */
+  }
+/* Deklarerar CSS-variabler för att lätt kunna ändra färger och storlekar på text och bakgrund. */
+
+:root {
+  --text-color: #FDFFF5;
+  --bg-color: #8C8453;
+  --main-color: #1B1E10;
+  --border-color: #677786;
+  --h1-front: 5.5rem;
+  --h2-front: 3rem;
+  --p-font: 1.2rem;
+}
+
+html {
+  margin: 0;
+}
+
+/* Inställningar för body: färg och bakgrundsbild, där bilden täcker hela bakgrunden och stannar fast vid scroll. */
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
+  background: var(--bg-color);
+  background-image: url("../image/golf.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Header är fixerat längst upp och täcker hela bredden. Innehållet placeras horisontellt med flexbox och en suddig bakgrund används. */
+
+header {
+  top: 0px;
+  left: 0;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  margin-top: 10px;
+}
+
+/* Stil på logotypen: stor text, vit färg och fet stil. */
+.logo {
+  font-size: 50px;
+  color: var(--text-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+/* Färgar all text inuti span-element med huvudfärgen. */
+
+span {
+  color: var(--main-color);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+
+  display: block;
+  transition: all 0.3s ease;
+}
+/* Flexbox-layout för navigeringsfältet (navbar) för horisontell placering av länkar. */
+
+.navbar {
+  display: flex;
+  list-style: none;
+}
+
+
+/* Stil på navigeringslänkarna: vit text, fet stil, padding och rundade hörn. Smooth transition vid hover. */
+.navbar a {
+  color: var(--text-color);
+  font-size: var(--p-font);
+  font-weight: 600;
+  margin: 5px;
+  transition: all .5s ease;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Vid hover: bakgrunden ändras till en guldbrun färg. */
+
+.navbar a:hover {
+  background: #8D7014;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  min-height: 100vh; 
+}
+
+section {
+  background-color: rgb(29, 32, 21);
+  text-align: center;
+  width: 1000px;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  color: black;
+  margin: 50px auto;
+  padding: 20px;
+  line-height: normal;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.border {
+  border: none;
+  padding: 20px;
+  
+}
+
+.border li {
+  text-align: left;
+  list-style: square;
+}
+/* Flexbox för "följ oss"-sektionen med vertikal centrering. */
+
+.follow-oss {
+  display: flex;
+  align-items: center;
+}
+
+/* Första länken i "följ oss"-sektionen har en unik stil: guldbrun färg, fet stil, gräns och rundade hörn med mörk bakgrund. */
+
+.follow-oss a:first-child {
+  color: #8D7014;
+  font-size: var(--p-font);
+  margin-right: 15px;
+  border: 3px solid;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: var(--main-color);
+}
+
+
+/* Allmänna länkar i "följ oss"-sektionen: vit text, mellanstorlek och smooth transition vid hover. */
+.follow-oss a {
+  vertical-align: middle;
+  font-size: 18px;
+  color: var(--text-color);
+  margin-right: 22px;
+  margin-left: 5px;
+  transition: all .5s ease;
+  font-weight: 600;
+}
+
+/* Vid hover på första länken: bakgrunden blir transparent och färgen. */
+
+
+.follow-oss a:first-child:hover {
+  background: transparent;
+  color: #8C9CA3;
+}
+
+/* Vid hover på övriga länkar: textfärgen ändras till guldbrun. */
+
+.follow-oss a:hover {
+  color: #8D7014;
+}
+
+  h1, h2 {
+    margin-bottom: 20px; 
+    padding-bottom: 10px;
+    padding-top: 10px; 
+    
+  }
+    
+
+footer {
+  background-color: rgb(74, 76, 63);
+  display: flex;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 240px;
+      right: 0;
+      width: 100%;
+      background-color: var(--main-color);
+      z-index: 999;
+
+  }
+
+  header {
+      flex-direction: column;
+      padding: 10px 20px;
+      width: 100%;
+  }
+
+  /*  lagt till .center .title //Magnus*/
+  .center .title {
+      font-size: 3rem;
+  }
+
+  /*  lagt till .center .sub-title //Magnus */
+  .center .sub-title {
+      font-size: 1.2rem;
+  }
+
+  /*  lagt till .news //Magnus */
+  .news {
+      padding: 50px 20px;
+  }
+
+  /*  image-row //Magnus */
+  .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+  }
+
+  /*  lagt till .center // Magnus */
+  .image-box {
+      width: 100%;
+  }
+
+
+  .hamburger {
+      display: flex;
+      position: relative;
+      z-index: 1000;
+      padding: 50px
+  }
+
+  .navbar li {
+      margin: 10px 0;
+      text-align: center;
+  }
+
+  .navbar a {
+      display: block;
+      padding: 15px;
+      border-bottom: 1px solid #444;
+  }
+
+
+  #menu-toggle:checked+.hamburger+.navbar {
+      display: flex;
+  }
+
+
+  #menu-toggle:checked+.hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 5px);
+  }
+
+  #menu-toggle:checked+.hamburger span:nth-child(2) {
+      opacity: 0;
+  }
+
+  #menu-toggle:checked+.hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -5px);
+  }
+}
+  

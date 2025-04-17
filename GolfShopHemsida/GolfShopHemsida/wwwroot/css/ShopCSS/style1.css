@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: url("/Images/Bakgrund/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+/* Styling för main container */
+main{
+    width: 100%;
+    max-width: 100%; 
+    display: grid;
+    justify-content: center;
+    font-size: 1em;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.shop-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffffd3;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+/* Position och styling för "shop" div */
+.shop{
+    margin: auto;
+    font-size: 3.5em;
+    font-weight: 250;
+    color: rgb(0, 0, 0);
+}
+
+/* Position och styling för "set div */
+.set{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    font-size: 2.5em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(0, 0, 0);
+}
+
+/* Position och styling för "klubbor" div */
+.klubbor{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    font-size: 2.5em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(0, 0, 0);
+}
+
+
+/* Grid layout för "produkter" */
+.produkter, .produkter2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Styling och position för alla individuella produkter */
+.produkt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #000000;
+}
+
+/* Beteende vid hover*/
+.produkt:hover{
+    transform:scale(1.05);
+    transition: all ease-in 0.2s;
+}
+
+/*Storlek för bild utav produkt*/
+.produkt img {
+    max-width: 100%;
+    height: auto;
+    
+}
+
+.produkt h2, .produkt p {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* Styling för "lägg i kundvagn button"*/
+button {
+    background-color: #00000091;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+}
+
+/* Beteende vid hover*/
+button:hover {
+    background-color: #218838;
+}
+
+/* Styling för "dropdown button" */
+.dropbutton {
+    background-color: #00000091;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 100%;
+}
+
+/* Position för "drop down" button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Styling och position för "dropdown content" */
+.dropcontent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Styling för länkar i "dropdown content" */
+ .dropcontent a {
+     display: block;
+     text-decoration: none;
+     padding: 8px 10px;
+     color: black;
+     transition: all 0.2s ease-in-out;
+     border-radius: 5px;
+ }
+
+
+.dropcontent a:hover {background-color: #3e8e41; border-radius: 5px;} 
+
+.dropdown:hover .dropcontent {display: block;background-color: #494949; border-radius: 5px; } 
+
+.dropdown:hover .dropbutton {background-color: #3e8e41;}
+
+.dropdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.item-name {
+    flex: 1;
+    margin-right: 12px;
+    font-weight: 500;
+    color: white;
+}
+
+.item-price {
+    white-space: nowrap;
+    color: white;
+}
+
+footer{color:white}
+
+
+@media (max-width: 1800px){
+    .produkter, .produkter2{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width:1150px){
+    main p{
+        font-size: 2em;
+    }
+    main h2{
+        font-size: 1.5em;
+    }
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 150px;
+        right: 0;
+        width: 100%;
+        background-color: var(--main-color);
+        z-index: 999;
+    }
+
+    .produkter, .produkter2{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hamburger {
+        display: flex;
+        position: relative;
+        z-index: 1000;
+        padding: 50px
+    }
+
+    #menu-toggle:checked+.hamburger+.navbar {
+        display: flex;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 5px);
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -5px);
+    }
+}
+
+
+@media (min-width: 768px) {
+    main {
+        padding: 10rem;
+    }
+    .shop-background {
+        padding: 50px; 
+    }
+    .produkt {
+        width: 80%; 
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .shop, .set, .klubbor {
+        font-size: 2em; 
+    }
+    .produkt h2, .produkt p {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 710px){
+    .produkter, .produkter2{
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+    }
+
+}
+
+@media (max-width:600px){
+    button {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+    header{
+        display:grid;
+        justify-items:center;
+        padding-left: 2rem;
+}
+}
+
+@media (max-width:480px){
+    button{
+        font-size: 2.2rem;
+        padding: 22px;
+    }
+    .dropcontent{
+        font-size: 2em;
+        width: 20rem;
+    }
+
+}
+
+@media (max-width:320px){
+    footer{padding:1rem; font-size: 1.5rem}
+    .dropcontent{
+        font-size: 3em;
+    }
+    body{
+        margin-bottom: 35rem;
+    }
+}
+

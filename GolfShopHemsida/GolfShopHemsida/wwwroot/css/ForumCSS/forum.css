@@ -1,0 +1,176 @@
+﻿body {
+    background-image: url("/Images/Bakgrund/bg.jpg")
+}
+.forum {
+    padding: 30px;
+    background-color: rgba(77,77,77,0.95);
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+ .forum h2 {
+     font-size: 2rem;
+     font-weight: 500;
+     margin-bottom: 25px;
+     color: white;
+     text-align: center;
+ }
+
+.thread-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.thread-form input,
+.thread-form textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+
+.thread-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.thread-form button {
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.thread-form button:hover {
+    background-color: #333;
+}
+
+.threads {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.thread {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.thread-header {
+    margin-bottom: 10px;
+}
+
+.thread h3 {
+    font-size: 1.3rem;
+    margin: 0 0 5px 0;
+    color: #000;
+}
+
+.thread-author {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.thread-content {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.delete-form {
+    margin-top: 15px;
+}
+
+.btn-danger {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    gap: 8px;
+    word-wrap: break-word;
+}
+
+.comment-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.comment p {
+    margin: 0;
+    color: #333;
+    flex: 1;
+    word-break: break-word;
+}
+
+.comment .delete-form {
+    margin: 0;
+}
+
+.comment-form {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: lightgray;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    border: 1px solid white;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.comment-form button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.comment-form button:hover {
+    background-color: darkgreen;
+}

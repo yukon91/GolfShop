@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Importerar typsnitt från Google Fonts, Raleway och Roboto med olika varianter. */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Deklarerar CSS-variabler för att lätt kunna ändra färger och storlekar på text och bakgrund. */
+
+:root {
+    --text-color: #FDFFF5;
+    --bg-color: #8C8453;
+    --main-color: #1B1E10;
+    --border-color: #677786;
+    --h1-front: 5.5rem;
+    --h2-front: 3rem;
+    --p-font: 1.2rem;
+}
+
+/* Inställningar för body: färg och bakgrundsbild, där bilden täcker hela bakgrunden och stannar fast vid scroll. */
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--text-color);
+    background: var(--bg-color);
+    background-image: url("./image/bg.jpg");
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;  
+}
+
+/* Header är fixerat längst upp och täcker hela bredden. Innehållet placeras horisontellt med flexbox och en suddig bakgrund används. */
+
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.349);
+    z-index: 100;
+}
+
+/* Stil på logotypen: stor text, vit färg och fet stil. */
+.logo {
+    font-size: 50px;
+    color: var(--text-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Färgar all text inuti span-element med huvudfärgen. */
+
+span {
+    color: var(--main-color);
+}
+
+/* Flexbox-layout för navigeringsfältet (navbar) för horisontell placering av länkar. */
+
+.navbar {
+    display: flex;
+}
+
+
+/* Stil på navigeringslänkarna: vit text, fet stil, padding och rundade hörn. Smooth transition vid hover. */
+.navbar a {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    font-weight: 600;
+    margin: 5px;
+    transition: all 1.5s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Vid hover: bakgrunden ändras till en guldbrun färg. */
+
+.navbar a:hover {
+    background: #000000;
+}
+
+/* Flexbox för "följ oss"-sektionen med vertikal centrering. */
+
+.follow-oss {
+    display: flex;
+    align-items: center;
+}
+
+/* Första länken i "följ oss"-sektionen har en unik stil: guldbrun färg, fet stil, gräns och rundade hörn med mörk bakgrund. */
+
+.follow-oss a:first-child {
+    color: #8D7014;
+    font-size: var(--p-font);
+    margin-right: 15px;
+    border: 3px solid;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--main-color);
+}
+
+
+/* Allmänna länkar i "följ oss"-sektionen: vit text, mellanstorlek och smooth transition vid hover. */
+.follow-oss a {
+    vertical-align: middle;
+    font-size: 17px;
+    color: var(--text-color);
+    margin-right: 22px;
+    margin-left: 5px;
+    transition: all .5s ease;
+    font-weight: 600;
+}
+
+/* Vid hover på första länken: bakgrunden blir transparent och färgen. */
+
+
+.follow-oss a:first-child:hover {
+    background: transparent;
+    color: #91621c;
+}
+
+/* Vid hover på övriga länkar: textfärgen ändras till guldbrun. */
+
+.follow-oss a:hover {
+    color: #8D7014;
+}
+#cart-icon{
+    font-size: 28px;
+}
+#cart-icon:hover{
+    transform:scale(1.2);
+}
+
+/* Styling för main container */
+main{
+    width: 100%;
+    max-width: 100%; 
+    display: grid;
+    justify-content: center;
+    font-size: 1em;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.shop-background {
+    padding: 20px; 
+    background-color: #ffffffd3;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 0 auto;
+    max-width: 1600px;
+    width: 100%; 
+}
+
+/* Position och styling för "shop" div */
+.shop{
+    margin: auto;
+    padding: 10px;
+    font-size: 3.5em;
+    font-weight: 250;
+    color: rgb(0, 0, 0);
+}
+
+/* Position och styling för "set div */
+.set{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    font-size: 2.5em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(0, 0, 0);
+}
+
+/* Position och styling för "klubbor" div */
+.klubbor{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    font-size: 2.5em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(0, 0, 0);
+}
+
+
+/* Grid layout för "produkter" */
+.produkter, .produkter2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Styling och position för alla individuella produkter */
+.produkt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 100%; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #000000;
+}
+
+/* Beteende vid hover*/
+.produkt:hover{
+    transform:scale(1.05);
+    transition: all ease-in 0.2s;
+}
+
+/*Storlek för bild utav produkt*/
+.produkt img {
+    max-width: 100%;
+    height: auto;
+    
+}
+
+.produkt h2, .produkt p {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* Styling för "lägg i kundvagn button"*/
+button {
+    background-color: #00000091;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+}
+
+/* Beteende vid hover*/
+button:hover {
+    background-color: #218838;
+}
+
+/* Styling för "dropdown button" */
+.dropbutton {
+    background-color: #00000091;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 100%;
+}
+
+/* Position för "drop down" button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Styling och position för "dropdown content" */
+.dropcontent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Styling för länkar i "dropdown content" */
+.dropcontent a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;   
+}
+
+.dropcontent a:hover {background-color: #3e8e41; border-radius: 5px;} /* Beteende vid hover*/
+
+.dropdown:hover .dropcontent {display: block;background-color: #494949; border-radius: 5px; } /* Beteende vid hover*/
+
+.dropdown:hover .dropbutton {background-color: #3e8e41;} /* Beteende vid hover*/
+
+#menu-toggle {
+    display: none;
+}
+
+/* Färgar all text inuti span-element med huvudfärgen. */
+
+span {
+    color: var(--main-color);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+
+    display: block;
+    transition: all 0.3s ease;
+}
+
+
+footer {
+    position: fixed;
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    bottom: 0; 
+    width: 100%;
+}
+
+
+@media (max-width:900px){
+    main p{
+        font-size: 2em;
+    }
+    main h2{
+        font-size: 1.5em;
+    }
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 150px;
+        right: 0;
+        width: 100%;
+        background-color: var(--main-color);
+        z-index: 999;
+    }
+
+    .produkter, .produkter2{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hamburger {
+        display: flex;
+        position: relative;
+        z-index: 1000;
+        padding: 50px
+    }
+
+    #menu-toggle:checked+.hamburger+.navbar {
+        display: flex;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 5px);
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-toggle:checked+.hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -5px);
+    }
+}
+
+@media (min-width: 768px) {
+    main {
+        padding: 15rem;
+    }
+    .shop-background {
+        padding: 50px; 
+    }
+    .produkt {
+        width: 80%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .produkter, .produkter2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .shop, .set, .klubbor {
+        font-size: 2em; 
+    }
+    .produkt h2, .produkt p {
+        font-size: 2em;
+    }
+}
+
+
+@media (max-width:600px){
+    button {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+    body{
+        margin-bottom: 20rem;
+    }
+}
+
+@media (max-width:480px){
+    .produkter, .produkter2 {
+        grid-template-columns: 1fr;
+    }
+    button{
+        font-size: 2.2rem;
+        padding: 22px;
+    }
+    .dropcontent{
+        font-size: 2em;
+        width: 20rem;
+    }
+
+}
+
+@media (max-width:320px){
+    
+    main{
+        margin-right:-44rem;
+    }
+    footer{padding:2rem; font-size: 2.5rem}
+    .dropcontent{
+        font-size: 3em;
+    }
+    body{
+        margin-bottom: 35rem;
+    }
+}

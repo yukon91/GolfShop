@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt och Besök</title>
+    <link rel="stylesheet" href="Kontakt och Besök.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+    <header id="header">
+        <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="navbar">
+          <li><a href="../Startsida/index.html">Home</a></li>
+          <li><a href="../Medlem/Login.html">Medlemssektion</a></li>
+          <li><a href="../Boka/Boka.html">Boka</a></li>
+          <li><a href="../Om-oss/Om-oss.html">Om oss</a></li>
+        </ul>
+
+        
+        <div class="follow-oss">
+            <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
+            <a href="../Shop/shop.html"><i class='bx bx-shopping-bag'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+        </div>
+    </header>
+    <div class="Rubrik">Kontakta oss på West Coast Golf!</div>
+    <div class="Container">
+        <div class="Kontakt-Container">
+            <div class="Container-Rubrik"><h2>Kontaktuppgifter & Öppentider</h2></div>
+            <div class="Info">
+                <p>Här hittar du information om oss ifall det är något du funderar över!</p>
+                <br><p>West Coast Golf </p> <br>
+                <p>Södra Badvägen 53</p>
+                <p>302 60 HALMSTAD</p> <br>
+                <p>Telefonnummer : 0733-246823</p><br>
+                <div>
+                    <b>Öppettider på våra banor!</b>
+                    <table class="öppettider">
+                        <thead>
+                            <tr>
+                                <td>Måndag-Tisdag</td>
+                                <td>Stängt!</td>
+                                <td>Priser:</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>onsdag-fredag</td>
+                                <td>kl. 13.00-18.00</td>
+                                <td rowspan="4">
+                                    <ul>
+                                        <li>Vuxen 100:-</li>
+                                        <li>Barn &lt; 11år: 70:-</li>
+                                        <li>Pensionär 80:-</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <td>Lördag</td>
+                            <td>kl. 13.00-18.00</td>
+                            <tr><td>Söndag</td>
+                            <td>kl. 13.00-19.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p class="map-text"><br><b>Här hittar ni oss!</b></p><br>
+                <div class="maps-container">
+                    <iframe class="maps"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5021.303808785703!2d12.8456019!3d56.6496342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4651a2f9eb209e8d%3A0xd88d12e1e20d6fbf!2sJapans%20Golfbanor!5e0!3m2!1ssv!2sse!4v1603553774545!5m2!1ssv!2sse"
+                      width="350" 
+                      height="200" 
+                      frameborder="0"
+                      style="border:0" 
+                      loading="lazy">
+                    </iframe>
+                  </div>
+                  
+            </div>            
+        </div>
+        <div class="Kontakt-Container">
+            <div class="Container-Rubrik"><h2>Undrar du någonting?</h2>
+            <p>Ifall du har någon fråga skicka gärna in det så svara vi så snabbt vi kan!</p></div>
+            <div class="form-container">
+                <form>
+                    <label for="namn">Namn:</label>
+                    <input type="text" id="email" name="namn" placeholder="Skriv in ditt fullständiga namn" required>
+        
+                    <label for="Telefonnummer">Telefonnummer:</label>
+                    <input type="tel" id="Telefonnummer" name="Telefonnummer" placeholder="Skriv ditt telefonnummer" required>
+                    
+                    <label for="Epost">Epost</label>
+                    <input type="email" id="email" name="email" placeholder="Skriv in din epostadress" required>
+
+                    <label for="Fråga">Fråga</label>
+                    <textarea name="Fråga" id="Fråga" placeholder="Skriv din fråga här"></textarea>
+        
+                    <button type="submit">Skicka!</button>
+                </form>
+            </div>
+        </div> 
+    </div>    
+
+
+
+
+</div> 
+<footer class="footer">
+    <p>Copyright &#169; 2024</p>
+    <p>West Coast Golf &#8482;</p>
+</footer> 
+
+
+
+
+</body>
+</html>

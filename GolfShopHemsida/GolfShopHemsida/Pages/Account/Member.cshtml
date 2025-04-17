@@ -1,0 +1,96 @@
+﻿@page
+@model GolfShopHemsida.Pages.Account.MemberModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member</title>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/MemberCSS/member.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+    <main>
+        <div class="container1">
+            <section class="section personal-info">
+                <h2>Information</h2>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="profile-picture-section">
+                        <label for="profilePicture"><strong class="strong-lower">Profilbild:</strong></label>
+                        <input type="file" id="profilePicture" name="ProfilePicture" accept="image/*" />
+
+                        @if (!string.IsNullOrEmpty(Model.ProfilePicturePath))
+                        {
+                            <div class="profile-picture-preview">
+                                <img src="@Model.ProfilePicturePath" alt="Profilbild" />
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-fields">
+                        <label for="namn"><strong class="strong-lower">Namn:</strong></label>
+                        <input type="text" id="namn" asp-for="Namn" required />
+
+                        <label for="adress"><strong class="strong-lower">Adress:</strong></label>
+                        <input type="text" id="adress" asp-for="Adress" required />
+
+                        <label><strong class="strong-lower">E-mail:</strong></label>
+                        <p class="readonly-email">@Model.Email</p>
+
+                        <label for="betalsatt"><strong class="strong-lower">Betalsätt:</strong></label>
+                        <select id="betalsatt" asp-for="Betalsätt" required>
+                            <option value="Autogiro">Autogiro</option>
+                            <option value="Kreditkort">Faktura</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="save-button">Spara Ändringar</button>
+                </form>
+            </section>
+
+            <section class="section membership">
+                <h2>Medlemskap</h2>
+                <img src="~/Images/Login_Medlem/platinum.png" alt="Platinum Membership" class="membership-img">
+                <button type="button" class="cancel-button">Avsluta Medlemskap</button>
+            </section>
+
+            <section class="section handicap">
+                <h2>Handikapp</h2>
+                <img src="~/Images/Login_Medlem/nineteen.png" alt="Handikapp 19" class="handicap-img">
+            </section>
+
+            <div class="container2">
+                <h2 id="forum">Forum</h2>
+                <div class="subjects">
+                    <a id="link-button" asp-page="/Account/Forum/Produkter">Produkter</a>
+                    <a id="link-button" asp-page="/Account/Forum/GolfRelaterat">Golf relaterat</a>
+                    <a id="link-button" asp-page="/Account/Forum/Ovrigt">Övriga ämnen</a>
+                    <a id="link-button" asp-page="/Account/Forum/Evenemang">Evenemang</a>
+                </div>
+                <form method="post" asp-page-handler="LogOut">
+                    <button class="bg-warning" id="logout" type="submit">Logga ut</button>
+                </form>
+            </div>           
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function () {
+                alert("Ändringarna har sparats!");
+            });
+        });
+    </script>
+</body>
+</html>

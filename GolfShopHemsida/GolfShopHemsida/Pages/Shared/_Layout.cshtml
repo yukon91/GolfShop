@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GolfShopHemsida</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header id="header">
+    <a href="../Startsida/index.html" class="logo">West Coast Golf</a>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <ul class="navbar">
+      <li><a asp-page="/Index">Home</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a asp-page="/Account/Member">Medlemssektion</a></li>
+            }
+            else
+            {
+                <li><a asp-area="Identity" asp-page="/Account/Login">Medlemssektion</a></li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Admin/AdminUser">Kundregister</a>
+                </li>
+            }
+      <li><a href="../Boka/Boka.html">Boka</a></li>
+      <li><a href="../Om-oss/Om-oss.html">Om&nbsp;oss</a></li>
+    </ul>
+    <div class="follow-oss">
+        <a href="../restaurang/restaurang.html"><i class='bx bx-restaurant'></i></a>
+        <a asp-page="/Shop"><i class='bx bx-shopping-bag'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-page="/Account/Member"><i class='bx bxs-user'></i></a>
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Login"><i class='bx bxs-user'></i></a>
+            }
+    </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">      
+            &copy; 2025 - GolfShopHemsida -       
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.getElementById("toggleBtn").addEventListener("click", function() {
+            document.querySelector(".fixed-footer").classList.toggle("visible");
+        });
+    </script>
+</body>
+</html>
