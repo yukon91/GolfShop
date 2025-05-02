@@ -1,8 +1,8 @@
 ## .NET ##
 **/bin/
 **/obj/
-**/appsettings*.json
-**/appsettings*.Development.json
+##/appsettings*.json
+##/appsettings*.Development.json
 
 ## EF Core Migrations (keep these) ##
 !**/Migrations/
